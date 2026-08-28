@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JADE PROJECT</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f4ef;
+      color: #20251f;
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 244, 239, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ddd8cf;
+    }
+
+    nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    nav a {
+      color: #20251f;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 85vh;
+      max-width: 1150px;
+      margin: auto;
+      padding: 90px 25px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .small {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      color: #69705f;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(55px, 9vw, 105px);
+      line-height: 0.9;
+      letter-spacing: -5px;
+      margin-bottom: 30px;
+    }
+
+    .hero p {
+      max-width: 520px;
+      font-size: 20px;
+      color: #62665d;
+      margin-bottom: 35px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #20251f;
+      color: white;
+      text-decoration: none;
+      padding: 15px 25px;
+      border-radius: 40px;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      opacity: 0.85;
+    }
+
+    .hero-image {
+      min-height: 500px;
+      border-radius: 180px 180px 25px 25px;
+      background:
+        radial-gradient(circle at 30% 25%, #dfe8d7 0 18%, transparent 19%),
+        radial-gradient(circle at 70% 65%, #b9c9aa 0 25%, transparent 26%),
+        linear-gradient(145deg, #8e9d7d, #d9dfd0);
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      padding: 35px;
+      overflow: hidden;
+    }
+
+    .hero-image span {
+      background: rgba(255,255,255,0.8);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+    }
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 90px 25px;
+    }
+
+    .section-title {
+      font-size: 45px;
+      margin-bottom: 45px;
+      letter-spacing: -2px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 35px;
+      border-radius: 25px;
+      border: 1px solid #e4dfd7;
+      min-height: 220px;
+    }
+
+    .card-number {
+      font-size: 13px;
+      color: #7a806f;
+      margin-bottom: 40px;
+    }
+
+    .card h3 {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .photo {
+      height: 330px;
+      border-radius: 25px;
+      display: flex;
+      align-items: end;
+      padding: 25px;
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #68745e, #c6d0bc);
+    }
+
+    .photo:nth-child(2) {
+      background: linear-gradient(135deg, #b8a58f, #e2d8ca);
+    }
+
+    .contact {
+      background: #20251f;
+      color: white;
+      border-radius: 35px;
+      padding: 65px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      color: #c7cbc2;
+      margin-bottom: 30px;
+    }
+
+    .contact .button {
+      background: white;
+      color: #20251f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px;
+      color: #777b72;
+      font-size: 13px;
+    }
+
+    @media (max-width: 750px) {
+      nav a {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 60px;
+      }
+
+      .hero-image {
+        min-height: 380px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .contact {
+        padding: 40px 20px;
+      }
+
+      .contact h2 {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">JADE PROJECT</div>
+
+    <div>
+      <a href="#about">О проекте</a>
+      <a href="#works">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div>
+      <div class="small">Creative studio · 001</div>
+
+      <h1>JADE<br>PROJECT</h1>
+
+      <p>
+        Креативное пространство для красивых,
+        современных и вдохновляющих проектов.
+      </p>
+
+      <a class="button" href="#works">Смотреть проекты →</a>
+    </div>
+
+    <div class="hero-image">
+      <span>Здесь скоро будет твоё фото ✨</span>
+    </div>
+  </section>
+
+
+  <section id="about">
+    <div class="small">About</div>
+    <h2 class="section-title">Создаём идеи,<br>которые запоминаются.</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-number">01</div>
+        <h3>Идея</h3>
+        <p>Продумываем концепцию и создаём уникальный визуальный образ.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">02</div>
+        <h3>Дизайн</h3>
+        <p>Делаем современный, аккуратный и удобный дизайн.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">03</div>
+        <h3>Результат</h3>
+        <p>Превращаем идею в настоящий работающий проект.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="works">
+    <div class="small">Selected works</div>
+    <h2 class="section-title">Избранные проекты</h2>
+
+    <div class="gallery">
+
+      <div class="photo">
+        Проект №01
+      </div>
+
+      <div class="photo">
+        Проект №02
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="contact">
+    <div class="contact">
+      <h2>Есть идея?</h2>
+
+      <p>
+        Давай превратим её в красивый проект.
+      </p>
+
+      <a class="button" href="mailto:hello@example.com">
+        Написать нам →
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 JADE PROJECT
+</footer>
+
+</body>
+</html>
