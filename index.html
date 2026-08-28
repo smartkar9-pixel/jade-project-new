@@ -1,1498 +1,1373 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>JADE — Creative Director & Event Producer</title>
-
-<meta name="description" content="JADE — креативное руководство, продюсирование и организация событий под ключ. События, которые работают на впечатление, бренд и бизнес.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="JADE — организация и креативное направление событий. Частные события, корпоративы, коммерческие и брендовые мероприятия.">
+<title>JADE — события, которые остаются</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
+:root{
+ --black:#252827;
+ --gray:#a8adac;
+ --gray2:#b0b4b3;
+ --pink:#d2aeb7;
+ --jade:#4e7167;
+ --white:#eeeeea;
+ --line:rgba(37,40,39,.22);
+ --sans:"DM Sans",Arial,sans-serif;
+ --serif:"Playfair Display",Georgia,serif;
+}
 
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+ margin:0;
+ background:var(--gray);
+ color:var(--black);
+ font-family:var(--sans);
+ -webkit-font-smoothing:antialiased
+}
+
+a{color:inherit;text-decoration:none}
+
+::selection{
+ background:var(--jade);
+ color:var(--white)
+}
+
+.wrap{
+ width:min(1380px,calc(100% - 42px));
+ margin:auto
+}
+
+.serif{
+ font-family:var(--serif);
+ font-weight:500;
+ font-style:normal;
+ letter-spacing:-.045em
+}
+
+.mini{
+ font-size:10px;
+ line-height:1.2;
+ text-transform:uppercase;
+ letter-spacing:.15em;
+ font-weight:600;
+ opacity:.68
+}
+
+.sub{
+ display:flex;
+ justify-content:space-between;
+ gap:20px;
+ border-bottom:1px solid currentColor;
+ padding-bottom:15px;
+ margin-bottom:55px;
+ font-size:10px;
+ text-transform:uppercase;
+ letter-spacing:.13em;
+ opacity:.72
+}
+
+.btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:45px;
+ padding:0 22px;
+ border:1px solid currentColor;
+ border-radius:2px;
+ font-size:10px;
+ font-weight:700;
+ letter-spacing:.12em;
+ text-transform:uppercase;
+ transition:.35s ease
+}
+
+.btn:hover{transform:translateY(-3px)}
+
+.btn.dark{
+ background:var(--black);
+ color:var(--white);
+ border-color:var(--black)
+}
+
+.btn.dark:hover{
+ background:transparent;
+ color:var(--black)
+}
+
+.btn.light:hover{
+ background:var(--white);
+ color:var(--black)
+}
+
+/* NAVIGATION */
+
+header{
+ position:fixed;
+ z-index:20;
+ top:0;
+ left:0;
+ right:0;
+ height:70px;
+ background:rgba(168,173,172,.82);
+ backdrop-filter:blur(16px);
+ border-bottom:1px solid rgba(37,40,39,.12)
+}
+
+nav{
+ height:100%;
+ display:grid;
+ grid-template-columns:1fr auto 1fr;
+ align-items:center
+}
+
+.logo{
+ font-size:16px;
+ font-weight:700;
+ letter-spacing:-.06em
+}
+
+.logo span{font-weight:400}
+
+.links{
+ display:flex;
+ gap:29px
+}
+
+.links a{
+ font-size:10px;
+ letter-spacing:.08em;
+ text-transform:uppercase
+}
+
+.header-btn{justify-self:end}
+
+/* HERO */
+
+.hero{
+ min-height:100vh;
+ padding:122px 0 62px;
+ display:flex;
+ align-items:flex-end;
+ overflow:hidden;
+ position:relative
+}
+
+.hero:after{
+ content:"JADE";
+ position:absolute;
+ right:-35px;
+ top:16%;
+ font-size:clamp(180px,31vw,460px);
+ font-weight:700;
+ letter-spacing:-.14em;
+ opacity:.045;
+ line-height:.7
+}
+
+.hero-inner{
+ width:100%;
+ position:relative;
+ z-index:1
+}
+
+.hero h1{
+ margin:27px 0 0;
+ max-width:1100px;
+ font-size:clamp(74px,10.4vw,160px);
+ line-height:.79;
+ letter-spacing:-.09em;
+ font-weight:500
+}
+
+.hero h1 .serif{color:var(--jade)}
+
+.hero-photo{
+ position:relative;
+ width:min(620px,72vw);
+ height:min(390px,43vw);
+ margin-top:54px;
+ margin-left:auto;
+ overflow:hidden;
+ background:#717777;
+ border:1px solid rgba(37,40,39,.18)
+}
+
+.hero-photo img{
+ width:100%;
+ height:100%;
+ display:block;
+ object-fit:cover;
+ filter:saturate(.78) contrast(.98)
+}
+
+.photo-placeholder{
+ background:linear-gradient(
+  135deg,
+  #777d7d 0%,
+  #666c6c 48%,
+  #9ca1a1 100%
+ )
+}
+
+.photo-placeholder-text{
+ position:absolute;
+ inset:auto 18px 15px auto;
+ font-size:9px;
+ letter-spacing:.14em;
+ text-transform:uppercase;
+ color:#eeeeea;
+ opacity:.72
+}
+
+.hero-bottom{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:55px;
+ max-width:850px;
+ margin-top:74px
+}
+
+.hero-bottom p{
+ font-size:15px;
+ line-height:1.42;
+ max-width:390px
+}
+
+.hero-bottom strong{font-weight:600}
+
+.hero-scroll{
+ position:absolute;
+ right:0;
+ bottom:2px;
+ font-size:10px;
+ text-transform:uppercase;
+ letter-spacing:.13em;
+ border-bottom:1px solid;
+ padding-bottom:6px
+}
+
+/* APPROACH */
+
+.dark-section{
+ background:var(--black);
+ color:var(--white);
+ padding:122px 0 135px;
+ position:relative;
+ overflow:hidden
+}
+
+.statement{
+ display:grid;
+ grid-template-columns:.55fr 1.45fr;
+ gap:80px
+}
+
+.statement h2{
+ font-size:clamp(62px,8vw,118px);
+ line-height:.82;
+ letter-spacing:-.085em;
+ font-weight:500;
+ margin:0
+}
+
+.statement-copy{
+ max-width:570px;
+ margin-top:70px;
+ font-size:18px;
+ line-height:1.4
+}
+
+.statement-copy p{margin:0 0 22px}
+
+.statement-copy strong{font-weight:600}
+
+/* PROCESS */
+
+.approach{
+ padding:122px 0 135px;
+ background:var(--gray2)
+}
+
+.approach-head{
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ gap:80px;
+ align-items:end
+}
+
+.approach h2{
+ font-size:clamp(62px,8vw,115px);
+ line-height:.82;
+ letter-spacing:-.085em;
+ font-weight:500;
+ margin:0
+}
+
+.approach-intro{
+ font-size:15px;
+ max-width:390px;
+ line-height:1.45
+}
+
+.steps{
+ margin-top:67px;
+ border-top:1px solid var(--line)
+}
+
+.step{
+ display:grid;
+ grid-template-columns:70px 1fr 1fr;
+ gap:25px;
+ padding:29px 0;
+ border-bottom:1px solid var(--line);
+ transition:.4s ease
+}
+
+.step:hover{
+ padding-left:13px;
+ background:rgba(238,238,234,.13)
+}
+
+.step-num{
+ font-size:10px;
+ opacity:.55
+}
+
+.step-title{
+ font-size:29px;
+ letter-spacing:-.045em
+}
+
+.step-text{
+ font-size:13px;
+ color:#555854;
+ max-width:500px
+}
+
+/* SERVICES */
+
+.service{
+ padding:48px 0 75px;
+ min-height:820px;
+ position:relative;
+ overflow:hidden
+}
+
+.service.pink{
+ background:var(--pink)
+}
+
+.service.green{
+ background:var(--jade);
+ color:var(--white)
+}
+
+.water{
+ position:absolute;
+ right:-35px;
+ top:145px;
+ font-size:clamp(150px,23vw,360px);
+ font-weight:700;
+ letter-spacing:-.14em;
+ line-height:.65;
+ opacity:.075;
+ pointer-events:none
+}
+
+.service-grid{
+ display:grid;
+ grid-template-columns:.23fr 1.77fr;
+ gap:45px;
+ position:relative;
+ z-index:1
+}
+
+.service-index{
+ font-size:10px;
+ letter-spacing:.14em;
+ text-transform:uppercase;
+ opacity:.6
+}
+
+.kicker{
+ font-size:10px;
+ letter-spacing:.15em;
+ text-transform:uppercase;
+ font-weight:700;
+ opacity:.65;
+ margin-bottom:22px
+}
+
+.service h2{
+ margin:0;
+ max-width:1060px;
+ font-size:clamp(58px,7.8vw,114px);
+ line-height:.82;
+ letter-spacing:-.09em;
+ font-weight:500
+}
+
+.service-intro{
+ display:grid;
+ grid-template-columns:1.15fr .85fr;
+ gap:80px;
+ align-items:end;
+ margin-top:78px
+}
+
+.lead{
+ font-size:clamp(22px,2.55vw,36px);
+ line-height:1.03;
+ letter-spacing:-.045em;
+ max-width:800px
+}
+
+.small{
+ font-size:13px;
+ line-height:1.5;
+ max-width:385px;
+ opacity:.72
+}
+
+.service-bottom{
+ margin-top:85px;
+ padding-top:18px;
+ border-top:1px solid currentColor;
+ display:grid;
+ grid-template-columns:1.3fr .7fr;
+ gap:50px
+}
+
+.list div{
+ display:flex;
+ justify-content:space-between;
+ gap:25px;
+ padding:14px 0;
+ border-bottom:1px solid currentColor;
+ font-size:11px
+}
+
+.list span:first-child{opacity:.55}
+
+.action{
+ display:flex;
+ justify-content:flex-end;
+ align-items:flex-end
+}
+
+/* CASES */
+
+.cases{
+ background:var(--black);
+ color:var(--white);
+ padding:122px 0 140px
+}
+
+.cases-head{
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ gap:70px;
+ align-items:end;
+ margin-bottom:65px
+}
+
+.cases h2{
+ font-size:clamp(62px,8vw,115px);
+ line-height:.82;
+ letter-spacing:-.085em;
+ font-weight:500;
+ margin:0
+}
+
+.cases-head p{
+ font-size:14px;
+ color:#aaa;
+ max-width:390px;
+ line-height:1.45
+}
+
+.case-grid{
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ gap:17px
+}
+
+.case{
+ border-radius:2px;
+ padding:26px;
+ min-height:500px;
+ display:flex;
+ flex-direction:column;
+ justify-content:space-between;
+ overflow:hidden;
+ position:relative;
+ transition:.5s cubic-bezier(.2,.8,.2,1)
+}
+
+.case:hover{transform:translateY(-8px)}
+
+.case.big{min-height:690px}
+
+.c1{background:#666966}
+.c2{background:var(--pink);color:var(--black)}
+.c3{background:var(--jade)}
+.c4{background:var(--gray)}
+
+.case-meta{
+ font-size:10px;
+ letter-spacing:.13em;
+ text-transform:uppercase
+}
+
+.case h3{
+ font-size:clamp(38px,5vw,73px);
+ line-height:.87;
+ letter-spacing:-.07em;
+ font-weight:500;
+ margin:0 0 28px
+}
+
+.case-num{
+ position:absolute;
+ right:-7px;
+ bottom:-26px;
+ font-size:175px;
+ line-height:.7;
+ letter-spacing:-.13em;
+ font-weight:700;
+ opacity:.08
+}
+
+/* ABOUT */
+
+.about{
+ background:var(--gray);
+ padding:122px 0 135px
+}
+
+.about-grid{
+ display:grid;
+ grid-template-columns:.65fr 1.35fr;
+ gap:80px
+}
+
+.about h2{
+ font-size:clamp(60px,7.7vw,110px);
+ line-height:.83;
+ letter-spacing:-.085em;
+ font-weight:500;
+ margin:0
+}
+
+.about-lead{
+ font-size:25px;
+ line-height:1.06;
+ letter-spacing:-.04em;
+ max-width:690px;
+ margin:55px 0
+}
+
+.about-points{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ border-top:1px solid var(--line);
+ border-left:1px solid var(--line)
+}
+
+.point{
+ min-height:180px;
+ padding:27px;
+ border-right:1px solid var(--line);
+ border-bottom:1px solid var(--line)
+}
+
+.point b{
+ font-size:15px;
+ display:block;
+ margin-bottom:14px
+}
+
+.point p{
+ font-size:13px;
+ color:#575a57;
+ max-width:280px;
+ line-height:1.45
+}
+
+/* CONTACT */
+
+.contact{
+ background:var(--pink);
+ padding:115px 0 90px;
+ overflow:hidden;
+ position:relative
+}
+
+.contact:after{
+ content:"START";
+ position:absolute;
+ right:-20px;
+ top:25px;
+ font-size:clamp(150px,24vw,350px);
+ font-weight:700;
+ letter-spacing:-.14em;
+ opacity:.055
+}
+
+.contact-grid{
+ display:grid;
+ grid-template-columns:1.35fr .65fr;
+ gap:80px;
+ align-items:end;
+ position:relative;
+ z-index:1
+}
+
+.contact h2{
+ font-size:clamp(72px,10vw,150px);
+ line-height:.78;
+ letter-spacing:-.095em;
+ font-weight:500;
+ margin:0
+}
+
+.contact-copy{
+ max-width:390px;
+ font-size:16px;
+ line-height:1.4
+}
+
+.contact-copy p{margin:0 0 28px}
+
+/* FOOTER */
+
+footer{
+ background:var(--black);
+ color:var(--white);
+ padding:55px 0 22px
+}
+
+.footer-top{
+ display:flex;
+ justify-content:space-between;
+ gap:30px;
+ min-height:140px
+}
+
+.footer-logo{
+ font-size:27px;
+ font-weight:700;
+ letter-spacing:-.06em
+}
+
+.footer-right{
+ text-align:right;
+ font-size:12px;
+ line-height:1.7;
+ color:#c8c8c4
+}
+
+.footer-bottom{
+ border-top:1px solid #444;
+ padding-top:17px;
+ margin-top:42px;
+ display:flex;
+ justify-content:space-between;
+ color:#777;
+ font-size:9px;
+ letter-spacing:.13em;
+ text-transform:uppercase
+}
+
+/* ANIMATION */
+
+.reveal{
+ opacity:0;
+ transform:translateY(28px);
+ transition:
+  opacity .85s ease,
+  transform .9s cubic-bezier(.2,.8,.2,1)
+}
+
+.reveal.on{
+ opacity:1;
+ transform:translateY(0)
+}
+
+.d1{transition-delay:.08s}
+.d2{transition-delay:.16s}
+.d3{transition-delay:.24s}
+
+@media(max-width:900px){
+
+ .wrap{width:calc(100% - 28px)}
+
+ header{height:65px}
+
+ .links{display:none}
+
+ nav{grid-template-columns:1fr auto}
+
+ .hero{
+  min-height:auto;
+  padding:105px 0 70px
+ }
+
+ .hero h1{
+  font-size:clamp(64px,18vw,105px)
+ }
+
+ .hero-photo{
+  width:100%;
+  height:62vw;
+  margin-top:45px
+ }
+
+ .hero-bottom,
+ .statement,
+ .approach-head,
+ .cases-head,
+ .contact-grid,
+ .about-grid{
+  grid-template-columns:1fr
+ }
+
+ .hero-bottom{
+  gap:15px;
+  margin-top:53px
+ }
+
+ .hero-scroll{
+  position:static;
+  display:block;
+  margin-top:50px;
+  width:max-content
+ }
+
+ .dark-section,
+ .approach,
+ .cases,
+ .about{
+  padding:90px 0
+ }
+
+ .statement-copy{margin-top:45px}
+
+ .service{
+  min-height:auto;
+  padding:42px 0 62px
+ }
+
+ .service-grid{
+  grid-template-columns:1fr;
+  gap:32px
+ }
+
+ .service-intro,
+ .service-bottom{
+  grid-template-columns:1fr;
+  gap:28px
+ }
+
+ .service-bottom{margin-top:55px}
+
+ .action{justify-content:flex-start}
+
+ .case-grid{grid-template-columns:1fr}
+
+ .case.big{min-height:520px}
+
+ .case{min-height:430px}
+
+ .about-points{grid-template-columns:1fr}
+
+ .footer-top{
+  flex-direction:column
+ }
+
+ .footer-right{text-align:left}
+
+ .footer-bottom{
+  flex-direction:column;
+  gap:12px
+ }
+}
+
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .reveal{transition:none!important}
+}
 :root {
-    --black: #171716;
-    --graphite: #282827;
-    --milk: #f3f0e9;
-    --paper: #e8e4dc;
-    --pink: #d9b8bd;
-    --jade: #496e62;
-    --jade-light: #7e9c91;
-    --line: rgba(23,23,22,.15);
-    --muted: #77746e;
+  --black: #25272a;
+  --graphite: #34383c;
+  --grey: #d7d9d8;
+  --green: #587b70;
+  --pink: #d9b7bd;
+
+  --text: #25272a;
+  --muted: #73787a;
+  --line: rgba(37, 39, 42, .18);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
+/* убираем старые молочные оттенки */
 body {
-    background: var(--milk);
-    color: var(--black);
-    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.45;
-    overflow-x: hidden;
+  background: var(--grey) !important;
+  color: var(--text);
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+/* основной фон */
+section,
+main {
+  background-color: var(--grey);
 }
 
-button {
-    font: inherit;
-}
-
-img {
-    display: block;
-    width: 100%;
-}
-
-::selection {
-    background: var(--jade);
-    color: white;
-}
-
-/* ---------------- HEADER ---------------- */
-
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 20px 4vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    mix-blend-mode: multiply;
-}
-
-.logo {
-    font-family: "Manrope", sans-serif;
-    font-size: 19px;
-    font-weight: 700;
-    letter-spacing: -.05em;
-}
-
-.logo span {
-    font-weight: 400;
-}
-
-.nav {
-    display: flex;
-    gap: 30px;
-    font-size: 12px;
-    letter-spacing: .03em;
-    text-transform: uppercase;
-}
-
-.nav a {
-    transition: opacity .3s ease;
-}
-
-.nav a:hover {
-    opacity: .5;
-}
-
-.header-cta {
-    border: 1px solid var(--black);
-    border-radius: 100px;
-    padding: 10px 17px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    transition: all .3s ease;
-}
-
-.header-cta:hover {
-    background: var(--black);
-    color: var(--milk);
-}
-
-/* ---------------- HERO ---------------- */
-
-.hero {
-    min-height: 100vh;
-    padding: 145px 4vw 45px;
-    display: grid;
-    grid-template-columns: 1fr;
-    position: relative;
-}
-
-.hero-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 65px;
-}
-
-.eyebrow {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .13em;
-    color: var(--muted);
-}
-
-.hero-number {
-    font-size: 11px;
-    color: var(--muted);
-}
-
-.hero h1 {
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(58px, 9.4vw, 148px);
-    font-weight: 500;
-    line-height: .87;
-    letter-spacing: -.075em;
-    max-width: 1150px;
-}
-
-.hero h1 em {
-    font-family: Georgia, serif;
-    font-weight: 400;
-    letter-spacing: -.07em;
-}
-
-.hero-bottom {
-    margin-top: 80px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px;
-    align-items: end;
-}
-
-.hero-intro {
-    max-width: 400px;
-    font-size: 17px;
-    line-height: 1.35;
-}
-
-.hero-intro strong {
-    font-weight: 600;
-}
-
-.hero-note {
-    max-width: 270px;
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.hero-link {
-    justify-self: end;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: .07em;
-    border-bottom: 1px solid var(--black);
-    padding-bottom: 5px;
-}
-
-/* ---------------- VISUAL ---------------- */
-
-.hero-visual {
-    margin-top: 65px;
-    height: min(60vw, 670px);
-    min-height: 420px;
-    position: relative;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 70% 30%, rgba(217,184,189,.85), transparent 28%),
-        radial-gradient(circle at 30% 75%, rgba(73,110,98,.85), transparent 30%),
-        linear-gradient(120deg, #252525, #c9c2b8 52%, #e2bfc4);
-}
-
-.hero-visual::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        rgba(0,0,0,.35),
-        transparent 45%,
-        rgba(255,255,255,.12)
-    );
-}
-
-.visual-caption {
-    position: absolute;
-    z-index: 2;
-    bottom: 24px;
-    left: 25px;
-    right: 25px;
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-}
-
-/* ---------------- INTRO ---------------- */
-
-.section {
-    padding: 150px 4vw;
-}
-
+/* графитовые блоки */
+.dark,
 .section-dark {
-    background: var(--black);
-    color: var(--milk);
+  background-color: var(--graphite) !important;
+  color: #f0f1ef;
 }
 
-.section-head {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-    margin-bottom: 90px;
+/* зелёный — главный акцент */
+.green,
+.section-green {
+  background-color: var(--green) !important;
+  color: #f1f2ef;
 }
 
-.section-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .12em;
-    color: var(--muted);
+/* розовый — только как акцент */
+.pink,
+.section-pink {
+  background-color: var(--pink) !important;
+  color: var(--graphite);
 }
 
-.section-dark .section-label {
-    color: #92918c;
+/* линии — тонкие и спокойные */
+hr,
+.case,
+.step,
+.service,
+article {
+  border-color: var(--line);
 }
 
-.section-title {
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(42px, 6vw, 88px);
-    font-weight: 500;
-    letter-spacing: -.06em;
-    line-height: .96;
-    max-width: 950px;
+/* убираем овальные декоративные элементы */
+.pill,
+.oval,
+.ellipse,
+.round,
+.badge,
+.tag {
+  border-radius: 0 !important;
 }
 
-.section-title em {
-    font-family: Georgia, serif;
-    font-weight: 400;
+/* кнопки становятся более архитектурными */
+.btn {
+  border-radius: 0 !important;
+  letter-spacing: .08em;
+  transition:
+    background-color .3s ease,
+    color .3s ease,
+    transform .3s ease;
 }
 
-/* ---------------- PROBLEM ---------------- */
-
-.problem-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 10vw;
-    align-items: start;
+.btn:hover {
+  transform: translateY(-2px);
 }
 
-.problem-copy {
-    font-size: clamp(26px, 3vw, 43px);
-    line-height: 1.08;
-    letter-spacing: -.04em;
-    max-width: 700px;
+/* типографика */
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -.045em;
 }
 
-.problem-copy em {
-    font-family: Georgia, serif;
+/* убираем слишком декоративный курсив */
+.serif,
+.serif *,
+em,
+i {
+  font-style: normal;
 }
 
-.problem-list {
-    border-top: 1px solid var(--line);
+/* но оставляем визуальный контраст */
+.serif {
+  color: var(--green);
+  font-weight: 400;
 }
 
-.problem-item {
-    padding: 22px 0;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    gap: 20px;
-    font-size: 14px;
-}
-
-.problem-item span {
-    color: var(--muted);
-    font-size: 11px;
-}
-
-/* ---------------- SOLUTION ---------------- */
-
-.solution {
-    background: var(--paper);
-}
-
-.solution-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--line);
-}
-
-.solution-card {
-    background: var(--paper);
-    padding: 42px 35px 48px;
-    min-height: 330px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-number {
-    font-size: 10px;
-    color: var(--muted);
-}
-
-.solution-card h3 {
-    font-family: "Manrope", sans-serif;
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: -.04em;
-    margin-bottom: 18px;
-}
-
-.solution-card p {
-    color: #65625c;
-    font-size: 14px;
-    max-width: 350px;
-}
-
-/* ---------------- COMMERCIAL ---------------- */
-
-.commercial {
-    background: var(--jade);
-    color: #f2eee6;
-    position: relative;
-    overflow: hidden;
-}
-
-.commercial::before {
-    content: "COMMERCIAL";
-    position: absolute;
-    right: -30px;
-    top: 30px;
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(80px, 15vw, 240px);
-    line-height: 1;
-    font-weight: 700;
-    letter-spacing: -.08em;
-    opacity: .07;
-    white-space: nowrap;
-}
-
-.commercial .section-label {
-    color: #b7c8c1;
-}
-
-.commercial-intro {
-    max-width: 900px;
-    font-size: clamp(28px, 4vw, 58px);
-    line-height: 1.02;
-    letter-spacing: -.05em;
-    margin-bottom: 100px;
-}
-
-.commercial-intro em {
-    font-family: Georgia, serif;
-}
-
-.commercial-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    background: rgba(255,255,255,.15);
-}
-
-.commercial-card {
-    min-height: 270px;
-    padding: 38px;
-    background: var(--jade);
-    border: 1px solid rgba(255,255,255,.08);
-}
-
-.commercial-card .small {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: #b7c8c1;
-}
-
-.commercial-card h3 {
-    font-family: "Manrope", sans-serif;
-    font-size: 27px;
-    font-weight: 500;
-    letter-spacing: -.04em;
-    margin: 65px 0 18px;
-}
-
-.commercial-card p {
-    font-size: 14px;
-    color: #d2ddd8;
-    max-width: 460px;
-}
-
-/* ---------------- CASES ---------------- */
-
-.cases {
-    background: var(--milk);
-}
-
-.cases-intro {
-    max-width: 720px;
-    font-size: 18px;
-    color: var(--muted);
-    margin-top: 30px;
-}
-
-.case {
-    margin-top: 100px;
-    display: grid;
-    grid-template-columns: 1.35fr .65fr;
-    gap: 55px;
-    align-items: end;
-}
-
-.case:nth-child(even) {
-    grid-template-columns: .65fr 1.35fr;
-}
-
-.case:nth-child(even) .case-image {
-    order: 2;
-}
-
-.case-image {
-    min-height: 570px;
-    position: relative;
-    overflow: hidden;
-}
-
-.case-image.one {
-    background:
-        radial-gradient(circle at 30% 30%, #d9b8bd, transparent 26%),
-        linear-gradient(135deg, #292929, #696c67 55%, #e4ddd2);
-}
-
-.case-image.two {
-    background:
-        radial-gradient(circle at 75% 40%, #f0ddd8, transparent 25%),
-        linear-gradient(140deg, #aaa59e, #2d3834);
-}
-
-.case-image.three {
-    background:
-        radial-gradient(circle at 40% 65%, #809d92, transparent 28%),
-        linear-gradient(125deg, #e5e0d8, #3a3b39);
-}
-
-.case-overlay {
-    position: absolute;
-    inset: 20px;
-    border: 1px solid rgba(255,255,255,.3);
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    color: white;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-}
-
+/* аккуратный подстрочник навигации */
+.section-kicker,
+.eyebrow,
+.label,
 .case-meta {
-    padding-bottom: 15px;
+  color: var(--muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 
-.case-meta .index {
-    font-size: 10px;
-    color: var(--muted);
-    margin-bottom: 35px;
+/* лёгкая анимация появления */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.22,1,.36,1);
 }
 
-.case-meta h3 {
-    font-family: "Manrope", sans-serif;
-    font-size: 38px;
-    font-weight: 500;
-    line-height: .98;
-    letter-spacing: -.05em;
-    margin-bottom: 22px;
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.case-meta p {
-    color: var(--muted);
-    font-size: 14px;
-    max-width: 390px;
-    margin-bottom: 28px;
+/* текстовые акценты */
+.text-green {
+  color: var(--green);
 }
 
-.case-result {
-    border-top: 1px solid var(--line);
-    padding-top: 17px;
-    font-size: 12px;
+.text-pink {
+  color: var(--pink);
 }
 
-/* ---------------- PROCESS ---------------- */
-
-.process {
-    background: var(--paper);
+.text-graphite {
+  color: var(--graphite);
 }
-
-.process-list {
-    border-top: 1px solid var(--line);
-}
-
-.process-row {
-    display: grid;
-    grid-template-columns: 80px 1fr 1fr;
-    gap: 40px;
-    padding: 32px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: start;
-}
-
-.process-number {
-    color: var(--muted);
-    font-size: 11px;
-}
-
-.process-row h3 {
-    font-family: "Manrope", sans-serif;
-    font-size: 27px;
-    font-weight: 500;
-    letter-spacing: -.04em;
-}
-
-.process-row p {
-    color: var(--muted);
-    font-size: 14px;
-    max-width: 400px;
-}
-
-/* ---------------- ABOUT ---------------- */
-
-.about {
-    background: var(--milk);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: .8fr 1.2fr;
-    gap: 10vw;
-}
-
-.about-image {
-    min-height: 600px;
-    background:
-        radial-gradient(circle at 65% 25%, #d8b7bc, transparent 22%),
-        radial-gradient(circle at 30% 70%, #496e62, transparent 27%),
-        linear-gradient(135deg, #252525, #c8c1b7);
-}
-
-.about-copy {
-    font-size: clamp(26px, 3.1vw, 45px);
-    line-height: 1.07;
-    letter-spacing: -.045em;
-}
-
-.about-copy em {
-    font-family: Georgia, serif;
-}
-
-.about-small {
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 35px;
-}
-
-.about-small p {
-    font-size: 13px;
-    color: var(--muted);
-}
-
-/* ---------------- CTA ---------------- */
-
-.cta {
-    background: var(--pink);
-    padding: 150px 4vw 120px;
-}
-
-.cta-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8vw;
-}
-
-.cta h2 {
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(55px, 8vw, 120px);
-    font-weight: 500;
-    line-height: .87;
-    letter-spacing: -.075em;
-}
-
-.cta h2 em {
-    font-family: Georgia, serif;
-}
-
-.cta-copy {
-    padding-top: 10px;
-    max-width: 460px;
-}
-
-.cta-copy p {
-    font-size: 19px;
-    line-height: 1.25;
-    margin-bottom: 42px;
-}
-
-.cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 30px;
-    background: var(--black);
-    color: var(--milk);
-    padding: 18px 24px;
-    border-radius: 100px;
-    text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: .08em;
-    transition: transform .3s ease, background .3s ease;
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    background: var(--jade);
-}
-
-/* ---------------- FOOTER ---------------- */
-
-footer {
-    background: var(--black);
-    color: var(--milk);
-    padding: 40px 4vw;
-}
-
-.footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 80px;
-}
-
-.footer-logo {
-    font-family: "Manrope", sans-serif;
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: -.07em;
-}
-
-.footer-contact {
-    text-align: right;
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,.15);
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: #85837e;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-}
-
-/* ---------------- MOBILE ---------------- */
-
-@media (max-width: 800px) {
-
-    .header {
-        padding: 17px 5vw;
-    }
-
-    .nav {
-        display: none;
-    }
-
-    .header-cta {
-        padding: 8px 13px;
-    }
-
-    .hero {
-        padding: 120px 5vw 30px;
-    }
-
-    .hero-top {
-        margin-bottom: 50px;
-    }
-
-    .hero h1 {
-        font-size: clamp(54px, 16vw, 100px);
-    }
-
-    .hero-bottom {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        margin-top: 55px;
-    }
-
-    .hero-link {
-        justify-self: start;
-    }
-
-    .hero-visual {
-        margin-top: 50px;
-        height: 110vw;
-        min-height: 450px;
-    }
-
-    .section {
-        padding: 100px 5vw;
-    }
-
-    .section-head {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        margin-bottom: 60px;
-    }
-
-    .problem-grid {
-        grid-template-columns: 1fr;
-        gap: 65px;
-    }
-
-    .problem-copy {
-        font-size: 31px;
-    }
-
-    .solution-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .solution-card {
-        min-height: 260px;
-    }
-
-    .commercial-intro {
-        font-size: 34px;
-        margin-bottom: 65px;
-    }
-
-    .commercial-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .commercial-card {
-        min-height: 240px;
-    }
-
-    .case,
-    .case:nth-child(even) {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        margin-top: 70px;
-    }
-
-    .case:nth-child(even) .case-image {
-        order: 0;
-    }
-
-    .case-image {
-        min-height: 440px;
-    }
-
-    .case-meta h3 {
-        font-size: 32px;
-    }
-
-    .process-row {
-        grid-template-columns: 45px 1fr;
-        gap: 15px;
-    }
-
-    .process-row p {
-        grid-column: 2;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 55px;
-    }
-
-    .about-image {
-        min-height: 450px;
-    }
-
-    .about-copy {
-        font-size: 31px;
-    }
-
-    .about-small {
-        grid-template-columns: 1fr;
-    }
-
-    .cta {
-        padding: 100px 5vw 90px;
-    }
-
-    .cta-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-    }
-
-    .cta h2 {
-        font-size: 72px;
-    }
-
-    .footer-top {
-        flex-direction: column;
-        gap: 45px;
-    }
-
-    .footer-contact {
-        text-align: left;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<header class="header">
-    <a href="#" class="logo">JADE<span> / PROJECT</span></a>
+<header>
+<div class="wrap">
+<nav>
+<a class="logo" href="#top">JADE <span>/ PROJECT</span></a>
 
-    <nav class="nav">
-        <a href="#services">Подход</a>
-        <a href="#commercial">Коммерческий ивент</a>
-        <a href="#cases">Кейсы</a>
-        <a href="#about">Обо мне</a>
-    </nav>
+<div class="links">
+<a href="#approach">Подход</a>
+<a href="#events">Для вас</a>
+<a href="#commercial">Для бизнеса</a>
+<a href="#cases">Кейсы</a>
+<a href="#about">Обо мне</a>
+</div>
 
-    <a href="#contact" class="header-cta">Обсудить проект</a>
+<a class="btn light header-btn" href="mailto:hello@jade-project.ru?subject=Обсудить проект">Обсудить проект</a>
+</nav>
+</div>
 </header>
 
-
-<main>
-
-<!-- HERO -->
+<main id="top">
 
 <section class="hero">
+<div class="wrap hero-inner">
 
-    <div class="hero-top">
-        <div class="eyebrow">
-            Creative Director<br>
-            Event Producer
-        </div>
+<div class="mini reveal">
+Creative Director · Event Producer
+</div>
 
-        <div class="hero-number">
-            01 — 06 / JADE PROJECT
-        </div>
-    </div>
+<h1 class="reveal d1">
+События,<br>
+которые <span class="serif">остаются.</span>
+</h1>
 
-    <h1>
-        События,<br>
-        которые<br>
-        <em>остаются.</em>
-    </h1>
+<div class="hero-photo reveal d2">
+<img src="hero.jpg" alt="Событие JADE" onerror="this.style.display='none';this.parentElement.classList.add('photo-placeholder')">
+<div class="photo-placeholder-text">YOUR IMAGE / 01</div>
+</div>
 
-    <div class="hero-bottom">
+<div class="hero-bottom">
 
-        <div class="hero-intro">
-            Я беру на себя <strong>всю задачу по событию</strong> —
-            от идеи и концепции до последнего гостя.
-            Вам остаётся только наслаждаться атмосферой.
-        </div>
+<p class="reveal d2">
+Я беру на себя <strong>всю задачу по событию</strong> — от первой идеи до последней детали. Вам не нужно становиться организатором собственного праздника.
+</p>
 
-        <div class="hero-note">
-            Для брендов, компаний и людей,
-            которым важно не просто провести мероприятие,
-            а создать впечатление, о котором будут говорить.
-        </div>
+<p class="reveal d3">
+Концепция, площадка, команда, сценарий, production и атмосфера — <strong>в одной системе и в одних руках.</strong>
+</p>
 
-        <a href="#services" class="hero-link">
-            Смотреть подход ↓
-        </a>
+</div>
 
-    </div>
+<a class="hero-scroll reveal d3" href="#approach">
+Как это работает ↓
+</a>
 
-    <div class="hero-visual">
-        <div class="visual-caption">
-            <span>Concept / Production / Experience</span>
-            <span>Moscow — Worldwide</span>
-        </div>
-    </div>
+</div>
+</section>
+
+<section class="dark-section" id="approach">
+
+<div class="wrap statement">
+
+<div>
+<div class="sub reveal">
+<span>01 / Подход</span>
+<span>Как мы работаем</span>
+</div>
+</div>
+
+<div>
+
+<h2 class="reveal">
+Вам не нужно<br>
+держать в голове<br>
+<span class="serif">всё.</span>
+</h2>
+
+<div class="statement-copy reveal d2">
+
+<p>
+У хорошего события десятки задач. Но у клиента не должно быть десятков задач.
+</p>
+
+<p>
+Вы рассказываете, <strong>что хотите получить</strong>. Я разбираю задачу, предлагаю решение, собираю нужных людей и отвечаю за реализацию.
+</p>
+
+<p>
+В результате вы получаете не список подрядчиков, а <strong>одно ответственное лицо и цельное событие.</strong>
+</p>
+
+</div>
+</div>
+</div>
 
 </section>
 
+<section class="approach">
 
-<!-- PROBLEM -->
+<div class="wrap">
 
-<section class="section section-dark">
+<div class="sub reveal">
+<span>02 / Процесс</span>
+<span>От идеи до последнего гостя</span>
+</div>
 
-    <div class="section-head">
+<div class="approach-head">
 
-        <div class="section-label">
-            02 / Когда нужен не организатор
-        </div>
+<h2 class="reveal">
+Спокойно<br>
+<span class="serif">внутри.</span><br>
+Сильно<br>
+снаружи.
+</h2>
 
-        <h2 class="section-title">
-            Вам не нужен ещё один человек,
-            которому нужно <em>объяснять, что делать.</em>
-        </h2>
+<p class="approach-intro reveal d2">
+Я собираю проект так, чтобы все сложные процессы оставались на моей стороне, а у вас было пространство для самого важного — прожить событие.
+</p>
+
+</div>
+
+<div class="steps">
+
+<div class="step reveal">
+<div class="step-num">01</div>
+<div class="step-title">Разбираемся</div>
+<div class="step-text">Цель, люди, формат, бюджет, ограничения и то, каким должен быть итог.</div>
+</div>
+
+<div class="step reveal d1">
+<div class="step-num">02</div>
+<div class="step-title">Придумываем</div>
+<div class="step-text">Концепция, визуальный язык, сценарий и логика впечатления — без случайных решений.</div>
+</div>
+
+<div class="step reveal d2">
+<div class="step-num">03</div>
+<div class="step-title">Собираем</div>
+<div class="step-text">Площадка, команда, подрядчики, смета, тайминг и production складываются в одну систему.</div>
+</div>
+
+<div class="step reveal d3">
+<div class="step-num">04</div>
+<div class="step-title">Реализуем</div>
+<div class="step-text">Я держу процесс и детали, чтобы задуманное выглядело именно так, как должно.</div>
+</div>
+
+</div>
+</div>
+</section>
+<section class="service pink" id="events">
+ <div class="water">FOR YOU</div>
+ <div class="wrap">
+  <div class="sub reveal">
+   <span>03 / Для вас</span>
+   <span>Свадьбы · Корпоративы · Частные события</span>
+  </div>
+
+  <div class="service-grid">
+   <div class="service-index reveal">
+    PRIVATE<br>EVENTS
+   </div>
+
+   <div>
+    <div class="kicker reveal">PRIVATE EVENTS</div>
+
+    <h2 class="reveal d1">
+     Праздник, о котором<br>
+     вам <span class="serif">не нужно думать.</span>
+    </h2>
+
+    <div class="service-intro">
+
+     <p class="lead reveal d2">
+      Свадьба, корпоратив, день рождения, частный ужин или важный повод.
+      Я забираю организацию на себя, чтобы вы могли
+      <strong>быть не заказчиком, а участником.</strong>
+     </p>
+
+     <p class="small reveal d3">
+      Помогу определить формат, придумать концепцию, найти пространство,
+      собрать команду, выстроить тайминг и проконтролировать производство —
+      от первого разговора до последнего гостя.
+     </p>
 
     </div>
 
-    <div class="problem-grid">
+    <div class="service-bottom reveal">
 
-        <div class="problem-copy">
-            Вам нужен человек, который
-            <em>соберёт всё в одно целое</em>,
-            возьмёт ответственность и не заставит
-            вас контролировать каждую деталь.
-        </div>
+     <div class="list">
 
-        <div class="problem-list">
+      <div>
+       <span>01 / ВАША ЗАДАЧА</span>
+       <span>Создать важный для вас день</span>
+      </div>
 
-            <div class="problem-item">
-                <span>01</span>
-                Подрядчики и команда
-            </div>
+      <div>
+       <span>02 / МОЯ ЗАДАЧА</span>
+       <span>Концепция · Организация · Production</span>
+      </div>
 
-            <div class="problem-item">
-                <span>02</span>
-                Концепция и визуальный образ
-            </div>
+      <div>
+       <span>03 / В РЕЗУЛЬТАТЕ</span>
+       <span>Вы внутри события, а не внутри чата</span>
+      </div>
 
-            <div class="problem-item">
-                <span>03</span>
-                Площадка, тайминг, логистика
-            </div>
+     </div>
 
-            <div class="problem-item">
-                <span>04</span>
-                Сценарий и атмосфера
-            </div>
-
-            <div class="problem-item">
-                <span>05</span>
-                Гости и клиентский опыт
-            </div>
-
-            <div class="problem-item">
-                <span>06</span>
-                Контроль бюджета и реализации
-            </div>
-
-        </div>
+     <div class="action">
+      <a class="btn dark"
+         href="mailto:hello@jade-project.ru?subject=Хочу организовать событие">
+       Расскажите, что планируете ↗
+      </a>
+     </div>
 
     </div>
-
+   </div>
+  </div>
+ </div>
 </section>
 
 
-<!-- SERVICES -->
+<section class="service green" id="commercial">
+ <div class="water">COMMERCIAL</div>
 
-<section class="section solution" id="services">
+ <div class="wrap">
 
-    <div class="section-head">
+  <div class="sub reveal">
+   <span>04 / Коммерческий ивент</span>
+   <span>Привлечение · Развитие · Новый контакт</span>
+  </div>
 
-        <div class="section-label">
-            03 / Что я делаю
-        </div>
+  <div class="service-grid">
 
-        <h2 class="section-title">
-            Один человек.<br>
-            <em>Вся система.</em>
-        </h2>
+   <div class="service-index reveal">
+    COMMERCIAL<br>EVENT
+   </div>
+
+   <div>
+
+    <div class="kicker reveal">
+     EVENT AS A BUSINESS TOOL
+    </div>
+
+    <h2 class="reveal d1">
+     Мероприятие может<br>
+     быть частью <span class="serif">бизнес-стратегии.</span>
+    </h2>
+
+    <div class="service-intro">
+
+     <p class="lead reveal d2">
+      Не просто собрать людей в красивом пространстве.
+      <strong>Привести бизнес к следующему шагу:</strong>
+      новым клиентам, отношениям, запуску, партнёрствам
+      или усилению бренда.
+     </p>
+
+     <p class="small reveal d3">
+      Я начинаю с бизнес-задачи и уже от неё строю аудиторию,
+      формат, концепцию, коммуникацию и production.
+      Событие становится точкой контакта, а не просто красивым вечером.
+     </p>
 
     </div>
 
-    <div class="solution-grid">
+    <div class="service-bottom reveal">
 
-        <article class="solution-card">
-            <div class="card-number">01 / STRATEGY</div>
+     <div class="list">
 
-            <div>
-                <h3>Смысл</h3>
-                <p>
-                    Разбираюсь, зачем вам это событие,
-                    для кого оно и какой результат должно
-                    оставить после себя.
-                </p>
-            </div>
-        </article>
+      <div>
+       <span>01 / ЦЕЛЬ</span>
+       <span>Привлечение · Запуск · Развитие</span>
+      </div>
 
-        <article class="solution-card">
-            <div class="card-number">02 / CONCEPT</div>
+      <div>
+       <span>02 / ФОРМАТ</span>
+       <span>Brand · B2B · B2C · Special Event</span>
+      </div>
 
-            <div>
-                <h3>Концепция</h3>
-                <p>
-                    Создаю идею, которая становится
-                    основой всего: от приглашения
-                    и пространства до сценария вечера.
-                </p>
-            </div>
-        </article>
+      <div>
+       <span>03 / СЛЕДУЮЩИЙ ШАГ</span>
+       <span>Внимание → контакт → действие</span>
+      </div>
 
-        <article class="solution-card">
-            <div class="card-number">03 / CREATIVE</div>
+     </div>
 
-            <div>
-                <h3>Визуальный язык</h3>
-                <p>
-                    Цвет, свет, декор, графика, музыка,
-                    детали и пространство работают
-                    как единая визуальная история.
-                </p>
-            </div>
-        </article>
-
-        <article class="solution-card">
-            <div class="card-number">04 / PRODUCTION</div>
-
-            <div>
-                <h3>Продакшн</h3>
-                <p>
-                    Собираю команду, подрядчиков,
-                    площадку, тайминг, логистику
-                    и контролирую реализацию.
-                </p>
-            </div>
-        </article>
-
-        <article class="solution-card">
-            <div class="card-number">05 / EXPERIENCE</div>
-
-            <div>
-                <h3>Опыт гостя</h3>
-                <p>
-                    Продумываю путь гостя от первого
-                    контакта до финальной точки,
-                    чтобы впечатление складывалось само.
-                </p>
-            </div>
-        </article>
-
-        <article class="solution-card">
-            <div class="card-number">06 / RESULT</div>
-
-            <div>
-                <h3>Результат</h3>
-                <p>
-                    Событие становится инструментом:
-                    для репутации, отношений, продаж,
-                    сообщества и развития бизнеса.
-                </p>
-            </div>
-        </article>
+     <div class="action">
+      <a class="btn light"
+         href="mailto:hello@jade-project.ru?subject=Коммерческий ивент">
+       Обсудить задачу бизнеса ↗
+      </a>
+     </div>
 
     </div>
 
+   </div>
+  </div>
+ </div>
 </section>
 
 
-<!-- COMMERCIAL EVENT -->
+<section class="cases" id="cases">
 
-<section class="section commercial" id="commercial">
+ <div class="wrap">
 
-    <div class="section-head">
+  <div class="sub reveal">
+   <span>05 / Кейсы</span>
+   <span>Задача · Идея · Реализация · Эффект</span>
+  </div>
 
-        <div class="section-label">
-            04 / Commercial Event
-        </div>
+  <div class="cases-head">
 
-        <h2 class="section-title">
-            Мероприятие может быть
-            <em>частью бизнес-стратегии.</em>
-        </h2>
+   <h2 class="reveal">
+    Не просто<br>
+    красивые <span class="serif">фотографии.</span>
+   </h2>
 
+   <p class="reveal d2">
+    Каждый проект начинается с задачи.
+    Здесь важны не только визуал и атмосфера,
+    но и решение, которое за ними стоит.
+   </p>
+
+  </div>
+
+  <div class="case-grid">
+
+   <article class="case big c1 reveal">
+
+    <div class="case-meta">
+     01 / Бренд · Запуск · Production
     </div>
 
-    <div class="commercial-intro">
-        Не просто собрать людей
-        в красивом пространстве.
-        <em>Привести бизнес к следующему шагу.</em>
+    <div>
+     <h3>
+      Запуск,<br>
+      который стал<br>
+      <span class="serif">событием.</span>
+     </h3>
+
+     <a class="btn light"
+        href="mailto:hello@jade-project.ru?subject=Кейс: запуск">
+      Смотреть кейс ↗
+     </a>
     </div>
 
-    <div class="commercial-grid">
+    <div class="case-num">01</div>
 
-        <article class="commercial-card">
-            <div class="small">01 / привлечь</div>
-            <h3>Новые клиенты</h3>
-            <p>
-                Создаём событие, на которое действительно
-                хочется попасть, и проектируем коммуникацию
-                так, чтобы после знакомства возникал
-                следующий контакт.
-            </p>
-        </article>
+   </article>
 
-        <article class="commercial-card">
-            <div class="small">02 / укрепить</div>
-            <h3>Отношения с клиентами</h3>
-            <p>
-                Укрепляем связь с существующими клиентами
-                через опыт, который невозможно получить
-                из обычной презентации или рекламного сообщения.
-            </p>
-        </article>
 
-        <article class="commercial-card">
-            <div class="small">03 / показать</div>
-            <h3>Уровень бренда</h3>
-            <p>
-                Пространство, сценарий, сервис и детали
-                становятся продолжением позиционирования
-                и показывают ценность бренда без лишних слов.
-            </p>
-        </article>
+   <article class="case c2 reveal d1">
 
-        <article class="commercial-card">
-            <div class="small">04 / развить</div>
-            <h3>Бизнес-задача</h3>
-            <p>
-                Я подключаюсь не только к организации,
-                но и к вопросу: что должно измениться
-                для бизнеса после этого вечера.
-            </p>
-        </article>
-
+    <div class="case-meta">
+     02 / Частное событие
     </div>
+
+    <div>
+     <h3>
+      Вечер,<br>
+      который хочется<br>
+      <span class="serif">помнить.</span>
+     </h3>
+
+     <a class="btn dark"
+        href="mailto:hello@jade-project.ru?subject=Кейс: частное событие">
+      Смотреть кейс ↗
+     </a>
+    </div>
+
+    <div class="case-num">02</div>
+
+   </article>
+
+
+   <article class="case c3 reveal d2">
+
+    <div class="case-meta">
+     03 / Коммерческий ивент
+    </div>
+
+    <div>
+     <h3>
+      Событие как<br>
+      <span class="serif">точка роста.</span>
+     </h3>
+
+     <a class="btn light"
+        href="mailto:hello@jade-project.ru?subject=Кейс: коммерческий ивент">
+      Смотреть кейс ↗
+     </a>
+    </div>
+
+    <div class="case-num">03</div>
+
+   </article>
+
+
+   <article class="case c4 reveal d3">
+
+    <div class="case-meta">
+     04 / Креативное направление
+    </div>
+
+    <div>
+     <h3>
+      Идея,<br>
+      которую можно<br>
+      <span class="serif">реализовать.</span>
+     </h3>
+
+     <a class="btn dark"
+        href="mailto:hello@jade-project.ru?subject=Кейс: креативное направление">
+      Смотреть кейс ↗
+     </a>
+    </div>
+
+    <div class="case-num">04</div>
+
+   </article>
+
+  </div>
+ </div>
 
 </section>
-
-
-<!-- CASES -->
-
-<section class="section cases" id="cases">
-
-    <div class="section-head">
-
-        <div class="section-label">
-            05 / Selected Work
-        </div>
-
-        <div>
-            <h2 class="section-title">
-                Не просто красивые
-                <em>картинки.</em>
-            </h2>
-
-            <p class="cases-intro">
-                Каждый проект начинается с задачи.
-                Визуал — только один из инструментов,
-                с помощью которых мы создаём результат.
-            </p>
-        </div>
-
-    </div>
-
-
-    <article class="case">
-
-        <div class="case-image one">
-            <div class="case-overlay">
-                Brand event / Private evening
-            </div>
-        </div>
-
-        <div class="case-meta">
-
-            <div class="index">CASE 01</div>
-
-            <h3>
-                Вечер,
-                который
-                говорит
-                за бренд.
-            </h3>
-
-            <p>
-                Концепция, пространство, сценарий,
-                визуальная система и полный продакшн.
-                Событие создано как продолжение
-                характера бренда.
-            </p>
-
-            <div class="case-result">
-                <strong>Задача:</strong>
-                создать контакт с аудиторией
-                через опыт, а не рекламу.
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <article class="case">
-
-        <div class="case-image two">
-            <div class="case-overlay">
-                Business event / Networking
-            </div>
-        </div>
-
-        <div class="case-meta">
-
-            <div class="index">CASE 02</div>
-
-            <h3>
-                Бизнес-
-                мероприятие,
-                которое
-                работает.
-            </h3>
-
-            <p>
-                Формат, в котором деловая часть
-                органично соединена с атмосферой,
-                знакомствами и возможностью
-                продолжить коммуникацию после события.
-            </p>
-
-            <div class="case-result">
-                <strong>Задача:</strong>
-                создать среду для новых знакомств
-                и развития клиентских отношений.
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <article class="case">
-
-        <div class="case-image three">
-            <div class="case-overlay">
-                Creative production / Experience
-            </div>
-        </div>
-
-        <div class="case-meta">
-
-            <div class="index">CASE 03</div>
-
-            <h3>
-                Когда
-                деталь становится
-                частью
-                впечатления.
-            </h3>
-
-            <p>
-                Креативное руководство, визуальная
-                концепция и работа с атмосферой
-                до мельчайших деталей.
-            </p>
-
-            <div class="case-result">
-                <strong>Задача:</strong>
-                создать событие, которое хочется
-                фотографировать, обсуждать и вспоминать.
-            </div>
-
-        </div>
-
-    </article>
-
-</section>
-
-
-<!-- PROCESS -->
-
-<section class="section process">
-
-    <div class="section-head">
-
-        <div class="section-label">
-            06 / Process
-        </div>
-
-        <h2 class="section-title">
-            Спокойно для вас.<br>
-            <em>Системно внутри.</em>
-        </h2>
-
-    </div>
-
-    <div class="process-list">
-
-        <div class="process-row">
-            <div class="process-number">01</div>
-            <h3>Погружаемся</h3>
-            <p>
-                Формулируем задачу, аудиторию,
-                цели, бюджет и критерии успеха.
-            </p>
-        </div>
-
-        <div class="process-row">
-            <div class="process-number">02</div>
-            <h3>Придумываем</h3>
-            <p>
-                Создаю концепцию, визуальное направление,
-                сценарий и архитектуру впечатления.
-            </p>
-        </div>
-
-        <div class="process-row">
-            <div class="process-number">03</div>
-            <h3>Собираем</h3>
-            <p>
-                Подбираю площадку, команду,
-                подрядчиков и собираю production.
-            </p>
-        </div>
-
-        <div class="process-row">
-            <div class="process-number">04</div>
-            <h3>Реализуем</h3>
-            <p>
-                Контролирую все процессы,
-                чтобы идея совпала с реальностью.
-            </p>
-        </div>
-
-        <div class="process-row">
-            <div class="process-number">05</div>
-            <h3>Получаем результат</h3>
-            <p>
-                После события оцениваем не только
-                фотографии, но и бизнес-эффект,
-                обратную связь и следующие возможности.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ABOUT -->
-
-<section class="section about" id="about">
-
-    <div class="section-head">
-
-        <div class="section-label">
-            About / JADE
-        </div>
-
-        <h2 class="section-title">
-            Креативный директор
-            внутри проекта —
-            <em>это про большее.</em>
-        </h2>
-
-    </div>
-
-    <div class="about-grid">
-
-        <div class="about-image"></div>
-
-        <div>
-
-            <div class="about-copy">
-                Я соединяю
-                <em>креатив,
-                стратегию и продюсирование</em>,
-                чтобы событие было не только
-                красивым, но и действительно
-                решало задачу.
-            </div>
-
-            <div class="about-small">
-
-                <p>
-                    Моя задача — увидеть проект целиком:
-                    от первого вопроса клиента до того,
-                    что человек почувствует,
-                    когда выйдет за дверь.
-                </p>
-
-                <p>
-                    Поэтому я могу быть одновременно
-                    креативным директором, продюсером
-                    и человеком, который держит
-                    всю систему в руках.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- FINAL CTA -->
-
-<section class="cta" id="contact">
-
-    <div class="cta-grid">
-
-        <h2>
-            Давайте
-            сделаем
-            <em>это.</em>
-        </h2>
-
-        <div class="cta-copy">
-
-            <p>
-                Расскажите, что вы хотите создать.
-                Я разберусь с задачей, предложу
-                направление и соберу решение
-                под ваш проект.
-            </p>
-
-            <a href="mailto:hello@jade-project.ru" class="cta-button">
-                Обсудить проект
-                <span>↗</span>
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-    <div class="footer-top">
-
-        <div class="footer-logo">
-            JADE
-        </div>
-
-        <div class="footer-contact">
-            Creative Director / Event Producer<br>
-            Москва — по всему миру<br>
-            <a href="mailto:hello@jade-project.ru">
-                hello@jade-project.ru
-            </a>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <span>© 2026 JADE PROJECT</span>
-        <span>Creative / Production / Experience</span>
-    </div>
-
-</footer>
-
-</body>
-</html>
