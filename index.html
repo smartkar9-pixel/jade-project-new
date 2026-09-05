@@ -917,6 +917,233 @@ footer{
     }
 }
 
+
+/* =========================
+   REAL PHOTOS
+========================= */
+
+.hero-visual::before{
+    background:
+        linear-gradient(135deg,rgba(41,45,49,.16),rgba(77,112,103,.12)),
+        url("IMG_6145.JPG") center 18%/cover no-repeat;
+    filter:saturate(.82);
+}
+
+.about-grid{
+    grid-template-columns:.72fr 1.28fr;
+}
+
+.about-photo{
+    margin-top:45px;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:#b8bdc0;
+    position:relative;
+}
+
+.about-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center top;
+    filter:saturate(.86);
+}
+
+.about-photo::after{
+    content:"JADE / CREATIVE DIRECTION";
+    position:absolute;
+    left:18px;
+    bottom:18px;
+    padding:10px 12px;
+    background:rgba(32,35,39,.84);
+    color:var(--white);
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.13em;
+}
+
+.case{
+    min-height:460px;
+    background-size:cover;
+    background-position:center;
+}
+
+.case::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(32,35,39,.08) 10%,rgba(32,35,39,.72) 100%);
+    z-index:0;
+    transition:.45s ease;
+}
+
+.case:hover::before{
+    background:linear-gradient(180deg,rgba(32,35,39,.08) 5%,rgba(32,35,39,.82) 100%);
+}
+
+.case > *{
+    position:relative;
+    z-index:1;
+}
+
+.case .case-meta,
+.case h3,
+.case .btn{
+    color:var(--white);
+}
+
+.case .case-meta{
+    opacity:.82;
+}
+
+.case .btn-dark{
+    background:var(--black);
+    color:var(--white);
+}
+
+.case .btn-outline{
+    border-color:rgba(243,244,243,.6);
+}
+
+.case:nth-child(1){
+    background-image:url("IMG_9935.jpg");
+}
+.case:nth-child(2){
+    background-image:url("IMG_9933.PNG");
+}
+.case:nth-child(3){
+    background-image:url("IMG_7347.WEBP");
+}
+.case:nth-child(4){
+    background-image:url("IMG_7474.PNG");
+}
+
+.client-experience{
+    background:var(--gray);
+    color:var(--graphite);
+}
+
+.client-experience .eyebrow{
+    color:#6d7378;
+}
+
+.client-experience .eyebrow::before{
+    background:var(--green);
+}
+
+.client-experience .section-head p{
+    color:#656c71;
+}
+
+.experience-note{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.experience-panel{
+    min-height:230px;
+    padding:30px;
+    background:rgba(41,45,49,.06);
+    border:1px solid rgba(41,45,49,.12);
+}
+
+.experience-panel strong{
+    display:block;
+    font-size:19px;
+    line-height:1.2;
+    letter-spacing:-.03em;
+    margin-bottom:15px;
+}
+
+.experience-panel span{
+    color:#656c71;
+    font-size:12px;
+    line-height:1.75;
+}
+
+.contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:24px;
+}
+
+.contact-links a{
+    display:inline-flex;
+    align-items:center;
+    min-height:40px;
+    padding:0 14px;
+    border:1px solid rgba(41,45,49,.25);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.04em;
+    transition:.3s ease;
+}
+
+.contact-links a:hover{
+    background:var(--graphite);
+    color:var(--white);
+    border-color:var(--graphite);
+}
+
+.footer-contacts{
+    margin-top:22px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.footer-contacts a{
+    color:var(--gray-dark);
+    font-size:11px;
+    transition:.3s ease;
+}
+
+.footer-contacts a:hover{
+    color:var(--pink);
+}
+
+@media(max-width:1000px){
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-photo{
+        max-width:520px;
+    }
+
+    .experience-note{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+    .about-photo{
+        margin-top:30px;
+        aspect-ratio:1/1.15;
+    }
+
+    .case{
+        min-height:400px;
+    }
+
+    .experience-panel{
+        min-height:190px;
+        padding:24px;
+    }
+
+    .contact-links{
+        gap:8px;
+    }
+
+    .contact-links a{
+        width:100%;
+        justify-content:center;
+    }
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -1475,6 +1702,65 @@ footer{
 </section>
 
 
+<!-- ================= CLIENT EXPERIENCE ================= -->
+
+<section class="client-experience">
+
+    <div class="wrap">
+
+        <div class="section-head reveal">
+
+            <div>
+                <div class="eyebrow">
+                    CLIENT EXPERIENCE / ЛОЯЛЬНОСТЬ И ОТНОШЕНИЯ
+                </div>
+
+                <span class="en">
+                    EXPERIENCE THAT BUILDS RELATIONSHIPS
+                </span>
+            </div>
+
+            <div>
+                <h2>
+                    Создаём опыт,
+                    <span class="serif green">к которому возвращаются.</span>
+                </h2>
+
+                <p>
+                    Событие для ваших клиентов — это точка контакта,
+                    где бренд становится личным опытом. Я создаю формат,
+                    который укрепляет отношения, повышает лояльность
+                    и оставляет желание быть с вами дальше.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="experience-note reveal">
+
+            <div class="experience-panel">
+                <strong>Закрытые ужины · private events · презентации · клиентские дни · специальные форматы.</strong>
+                <span>
+                    От идеи и сценария до площадки, команды и последнего гостя.
+                    Каждая деталь работает на впечатление и отношения с аудиторией.
+                </span>
+            </div>
+
+            <div class="experience-panel">
+                <strong>Бренд становится не просто знаком, а воспоминанием.</strong>
+                <span>
+                    Продумываю атмосферу, сценарий и путь гостя так,
+                    чтобы после события хотелось продолжить отношения.
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 <!-- ================= COMMERCIAL ================= -->
 
 <section class="commercial-section">
@@ -1723,6 +2009,10 @@ footer{
                     <span>Кузнецова</span>
                 </h2>
 
+                <div class="about-photo">
+                    <img src="IMG_6145.JPG" alt="Анастасия Кузнецова — Creative Director & Event Producer">
+                </div>
+
             </div>
 
 
@@ -1928,9 +2218,17 @@ footer{
                 </p>
 
                 <a class="btn btn-dark"
-                   href="mailto:hello@jade-project.ru?subject=Обсудить проект">
+                   href="mailto:asyajade5@yandex.ru?subject=Обсудить проект">
                     Написать мне ↗
                 </a>
+
+                <div class="contact-links">
+                    <a href="tel:+79858295270">+7 985 829 52 70</a>
+                    <a href="mailto:asyajade5@yandex.ru">Email</a>
+                    <a href="https://t.me/asyajade5" target="_blank" rel="noopener">Telegram</a>
+                    <a href="https://instagram.com/asyajade5" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://wa.me/79858295270" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
 
             </div>
 
@@ -1960,6 +2258,14 @@ footer{
                 <span class="en">
                     CREATIVE DIRECTION · EVENT PRODUCTION
                 </span>
+
+                <div class="footer-contacts">
+                    <a href="tel:+79858295270">+7 985 829 52 70</a>
+                    <a href="mailto:asyajade5@yandex.ru">asyajade5@yandex.ru</a>
+                    <a href="https://t.me/asyajade5" target="_blank" rel="noopener">Telegram · @asyajade5</a>
+                    <a href="https://instagram.com/asyajade5" target="_blank" rel="noopener">Instagram · @asyajade5</a>
+                    <a href="https://wa.me/79858295270" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
 
             </div>
 
