@@ -1352,6 +1352,262 @@ footer{
     }
 }
 
+
+/* =========================
+   EDITORIAL PHOTO COMPOSITION
+   Photos are part of the layout, not a card gallery.
+========================= */
+
+.photo-layer{
+    position:absolute;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+    opacity:.72;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    filter:saturate(.78);
+    mix-blend-mode:normal;
+}
+.photo-layer::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(32,35,39,.10),rgba(32,35,39,.52));
+}
+.event-card > *:not(.photo-layer),
+.commercial-section > .wrap,
+.cta > .wrap{
+    position:relative;
+    z-index:2;
+}
+
+/* Hero — image becomes a deep background plane */
+.hero-visual{
+    overflow:visible;
+    background:transparent;
+}
+.hero-visual::before{
+    z-index:0;
+    opacity:.94;
+    background:
+        linear-gradient(135deg,rgba(41,45,49,.18),rgba(77,112,103,.12)),
+        url("IMG_6145.JPG") center 18%/cover no-repeat;
+}
+.hero-visual::after{
+    z-index:1;
+}
+
+/* A second photo floats outside the hero frame */
+.hero-visual .hero-float-photo{
+    position:absolute;
+    z-index:3;
+    width:210px;
+    height:280px;
+    right:-70px;
+    top:54px;
+    background:url("IMG_6975.JPG") center/cover no-repeat;
+    opacity:.92;
+    transform:rotate(2.5deg);
+    box-shadow:0 24px 60px rgba(0,0,0,.25);
+}
+
+/* Private / commercial direction blocks */
+.event-card{
+    background-position:center;
+}
+.event-card.client{
+    background:
+        linear-gradient(135deg,rgba(216,174,183,.92),rgba(216,174,183,.82)),
+        url("IMG_9935.jpg") center/cover no-repeat;
+}
+.event-card.commercial{
+    background:
+        linear-gradient(135deg,rgba(77,112,103,.90),rgba(77,112,103,.80)),
+        url("IMG_9933.PNG") center/cover no-repeat;
+}
+
+/* Two service items receive quiet photographic depth */
+.service.has-photo{
+    position:relative;
+    overflow:hidden;
+}
+.service.has-photo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-position:center;
+    background-size:cover;
+    opacity:.16;
+    filter:saturate(.65);
+    transition:opacity .4s ease,transform .6s ease;
+}
+.service.has-photo:hover::before{
+    opacity:.28;
+    transform:scale(1.035);
+}
+.service.has-photo > *{
+    position:relative;
+    z-index:1;
+}
+.service.wedding::before{background-image:url("IMG_0224.JPG");}
+.service.private::before{background-image:url("IMG_0230.JPG");}
+
+/* Client experience — one large atmospheric image, intentionally cropped */
+.client-experience{
+    position:relative;
+    overflow:hidden;
+}
+.client-experience::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    width:48vw;
+    height:72%;
+    right:-9vw;
+    top:14%;
+    background:
+        linear-gradient(90deg,rgba(217,221,224,.96),rgba(217,221,224,.40)),
+        url("IMG_9967.WEBP") center/cover no-repeat;
+    opacity:.72;
+    transform:rotate(-2deg);
+}
+.client-experience > .wrap{
+    position:relative;
+    z-index:1;
+}
+
+/* Commercial section — photography sits behind the business message */
+.commercial-section{
+    position:relative;
+    overflow:hidden;
+}
+.commercial-section::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    left:-8vw;
+    bottom:-10%;
+    width:46vw;
+    height:72%;
+    background:
+        linear-gradient(90deg,rgba(77,112,103,.90),rgba(77,112,103,.30)),
+        url("IMG_7474.PNG") center/cover no-repeat;
+    opacity:.72;
+    transform:rotate(-2deg);
+}
+.commercial-section::after{
+    content:"";
+    position:absolute;
+    z-index:0;
+    right:-10vw;
+    top:-16%;
+    width:40vw;
+    height:66%;
+    background:
+        linear-gradient(90deg,rgba(77,112,103,.25),rgba(77,112,103,.88)),
+        url("IMG_7347.WEBP") center/cover no-repeat;
+    opacity:.55;
+    transform:rotate(3deg);
+}
+
+/* Cases stay image-led, but become editorial rather than flat cards */
+.case{
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.case::before{
+    background:linear-gradient(180deg,rgba(32,35,39,.02) 12%,rgba(32,35,39,.78) 100%);
+}
+
+/* About — portrait floats beyond its column */
+.about{
+    position:relative;
+    overflow:hidden;
+}
+.about-photo{
+    position:relative;
+    margin-left:-5vw;
+    width:calc(100% + 5vw);
+    max-width:560px;
+}
+.about-photo::before{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    width:150px;
+    height:190px;
+    left:-70px;
+    bottom:-45px;
+    background:url("IMG_1372.jpg") center/cover no-repeat;
+    opacity:.55;
+    transform:rotate(-5deg);
+}
+
+/* CTA — one quiet full-width memory behind the message */
+.cta{
+    position:relative;
+    overflow:hidden;
+}
+.cta::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    right:-8vw;
+    top:-22%;
+    width:48vw;
+    height:145%;
+    background:
+        linear-gradient(90deg,rgba(216,174,183,.96),rgba(216,174,183,.40)),
+        url("IMG_0795.JPG") center/cover no-repeat;
+    opacity:.55;
+    transform:rotate(3deg);
+}
+
+/* Desktop breathing room */
+@media(min-width:1001px){
+    .event-card.client{transform:translateY(10px);}
+    .event-card.commercial{transform:translateY(-10px);}
+    .case:nth-child(2){transform:translateY(28px);}
+    .case:nth-child(4){transform:translateY(-18px);}
+}
+
+/* Mobile — keep photos inside the viewport */
+@media(max-width:650px){
+    .hero-visual .hero-float-photo{
+        width:125px;
+        height:165px;
+        right:-18px;
+        top:24px;
+    }
+    .client-experience::before{
+        width:78vw;
+        height:44%;
+        right:-18vw;
+        top:53%;
+    }
+    .commercial-section::before{
+        width:80vw;
+        height:48%;
+        left:-20vw;
+    }
+    .commercial-section::after{
+        width:72vw;
+        height:42%;
+        right:-24vw;
+    }
+    .about-photo{
+        margin-left:0;
+        width:100%;
+    }
+    .cta::before{
+        width:85vw;
+        right:-28vw;
+    }
+}
+
 </style>
 </head>
 
@@ -1370,7 +1626,6 @@ footer{
                 <a href="#events">Для вас</a>
                 <a href="#commercial">Для бизнеса</a>
                 <a href="#cases">Кейсы</a>
-                <a href="#gallery">Фото</a>
                 <a href="#about">Обо мне</a>
             </div>
 
@@ -1431,6 +1686,8 @@ footer{
 
 
             <div class="hero-visual reveal">
+
+                <div class="hero-float-photo" aria-hidden="true"></div>
 
                 <div class="hero-note float-text">
                     <strong>Не просто организовать.</strong>
@@ -1713,7 +1970,7 @@ footer{
 
             <div class="service-list reveal">
 
-                <div class="service">
+                <div class="service has-photo wedding">
                     <div class="service-num">01</div>
 
                     <h3>
@@ -1727,7 +1984,7 @@ footer{
                 </div>
 
 
-                <div class="service">
+                <div class="service has-photo private">
                     <div class="service-num">02</div>
 
                     <h3>
@@ -2060,103 +2317,6 @@ footer{
 
 </section>
 
-
-
-<!-- ================= PHOTO GALLERY ================= -->
-
-<section class="photo-gallery" id="gallery">
-
-    <div class="wrap">
-
-        <div class="section-head reveal">
-
-            <div>
-                <div class="eyebrow">
-                    Живые моменты
-                </div>
-
-                <span class="en">
-                    JADE · REAL EVENTS · REAL PEOPLE
-                </span>
-            </div>
-
-            <div>
-                <h2>
-                    Не только кейсы.
-                    <span class="serif pink">Атмосфера.</span>
-                </h2>
-
-                <p>
-                    Показываю события такими, какими они остаются в памяти:
-                    люди, энергия, детали, пространство и настоящие эмоции.
-                </p>
-            </div>
-
-        </div>
-
-        <div class="gallery-grid reveal">
-
-            <figure class="gallery-item">
-                <img src="IMG_0224.JPG" alt="JADE — событие и атмосфера">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_0230.JPG" alt="JADE — событие и гости">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_0795.JPG" alt="JADE — событие">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_1372.jpg" alt="JADE — мероприятие">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_6145.JPG" alt="Анастасия Кузнецова">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_6975.JPG" alt="JADE — личный стиль и работа">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_6979.JPG" alt="JADE — мероприятие">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_6982.JPG" alt="JADE — event production">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_7336.jpg" alt="JADE — backstage и процесс">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_7347.WEBP" alt="JADE — масштабное событие">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_7474.PNG" alt="JADE — White Night">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_9933.PNG" alt="JADE — корпоративное событие">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_9935.jpg" alt="JADE — частное событие">
-            </figure>
-
-            <figure class="gallery-item">
-                <img src="IMG_9967.WEBP" alt="JADE — событие «Земля и мы»">
-            </figure>
-
-        </div>
-
-    </div>
-
-</section>
 
 
 <!-- ================= ABOUT ================= -->
