@@ -1707,6 +1707,134 @@ footer{
 }
 </style>
 
+
+<style id="jade-layout-final-v2">
+/* =========================================================
+   1. SERVICES — four absolutely equal windows
+   ========================================================= */
+.service-list{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(2,320px) !important;
+    gap:1px !important;
+    align-items:stretch !important;
+    background:var(--line) !important;
+}
+.service-list > .service{
+    width:100% !important;
+    height:320px !important;
+    min-height:320px !important;
+    max-height:320px !important;
+    margin:0 !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+}
+.service.service-photo-card{
+    position:relative !important;
+    overflow:hidden !important;
+    isolation:isolate !important;
+}
+.service.service-photo-card .service-photo{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    max-height:none !important;
+    object-fit:cover !important;
+    display:block !important;
+}
+.service-card-content{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    box-sizing:border-box !important;
+    padding:28px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-end !important;
+}
+.service-card-content .service-num{
+    top:28px !important;
+    left:28px !important;
+}
+.service-overlay{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+}
+
+/* =========================================================
+   2. GALLERY — packed masonry, no vertical "holes"
+   ========================================================= */
+.photo-gallery .gallery-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:12px !important;
+    align-items:start !important;
+    position:relative !important;
+}
+.photo-gallery .gallery-item{
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    position:relative !important;
+    box-sizing:border-box !important;
+}
+.photo-gallery .gallery-item img{
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    max-width:none !important;
+    object-fit:cover !important;
+    object-position:center !important;
+}
+
+/* The masonry script below controls exact positions. */
+.photo-gallery .gallery-grid.masonry-ready{
+    display:block !important;
+    min-height:1px !important;
+}
+.photo-gallery .gallery-grid.masonry-ready .gallery-item{
+    position:absolute !important;
+    margin:0 !important;
+}
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+@media(max-width:900px){
+    .service-list{
+        grid-template-rows:repeat(2,280px) !important;
+    }
+    .service-list > .service{
+        height:280px !important;
+        min-height:280px !important;
+        max-height:280px !important;
+    }
+    .photo-gallery .gallery-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+}
+@media(max-width:600px){
+    .service-list{
+        grid-template-columns:1fr !important;
+        grid-template-rows:repeat(4,280px) !important;
+    }
+    .service-list > .service{
+        height:280px !important;
+        min-height:280px !important;
+        max-height:280px !important;
+    }
+    .photo-gallery .gallery-grid{
+        grid-template-columns:1fr !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -3077,6 +3205,68 @@ document.querySelectorAll('.gallery-item img').forEach(function(img){
         if (item) item.remove();
     });
 });
+</script>
+
+
+<script id="jade-packed-masonry">
+(function(){
+  function layoutMasonry(){
+    document.querySelectorAll('.photo-gallery .gallery-grid').forEach(function(grid){
+      var items = Array.from(grid.querySelectorAll('.gallery-item'));
+      if(!items.length) return;
+
+      var width = grid.clientWidth;
+      if(!width) return;
+
+      var columns = window.innerWidth <= 600 ? 1 : (window.innerWidth <= 900 ? 2 : 3);
+      var gap = 12;
+      var colWidth = (width - gap * (columns - 1)) / columns;
+      var heights = Array(columns).fill(0);
+
+      grid.classList.add('masonry-ready');
+
+      items.forEach(function(item){
+        item.style.width = colWidth + 'px';
+        item.style.height = 'auto';
+
+        var img = item.querySelector('img');
+        var ratio = (img && img.naturalWidth && img.naturalHeight)
+          ? img.naturalHeight / img.naturalWidth
+          : 0.75;
+
+        var col = heights.indexOf(Math.min.apply(null, heights));
+        var top = heights[col];
+
+        item.style.left = (col * (colWidth + gap)) + 'px';
+        item.style.top = top + 'px';
+        item.style.height = (colWidth * ratio) + 'px';
+
+        heights[col] = top + colWidth * ratio + gap;
+      });
+
+      grid.style.height = Math.max.apply(null, heights) - gap + 'px';
+    });
+  }
+
+  function ready(){
+    var imgs = document.querySelectorAll('.photo-gallery .gallery-grid img');
+    var pending = [];
+    imgs.forEach(function(img){
+      if(!img.complete) pending.push(img);
+    });
+    pending.forEach(function(img){
+      img.addEventListener('load', layoutMasonry, {once:true});
+      img.addEventListener('error', layoutMasonry, {once:true});
+    });
+    layoutMasonry();
+  }
+
+  window.addEventListener('load', ready);
+  window.addEventListener('resize', function(){
+    clearTimeout(window.__jadeMasonryTimer);
+    window.__jadeMasonryTimer = setTimeout(layoutMasonry, 80);
+  });
+})();
 </script>
 
 </body>
