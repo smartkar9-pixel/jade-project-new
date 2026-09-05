@@ -1354,260 +1354,185 @@ footer{
 
 
 /* =========================
-   EDITORIAL PHOTO COMPOSITION
-   Photos are part of the layout, not a card gallery.
+   CLEAN PHOTO SYSTEM
+   No overlapping photo layers; portraits keep natural proportions.
 ========================= */
 
-.photo-layer{
-    position:absolute;
-    z-index:0;
-    pointer-events:none;
-    overflow:hidden;
-    opacity:.72;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size:cover;
-    filter:saturate(.78);
-    mix-blend-mode:normal;
-}
-.photo-layer::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg,rgba(32,35,39,.10),rgba(32,35,39,.52));
-}
-.event-card > *:not(.photo-layer),
-.commercial-section > .wrap,
-.cta > .wrap{
-    position:relative;
-    z-index:2;
-}
-
-/* Hero — image becomes a deep background plane */
+/* Hero: one integrated portrait, no floating second image */
 .hero-visual{
-    overflow:visible;
-    background:transparent;
+    overflow:hidden;
+    background:var(--graphite-soft);
 }
 .hero-visual::before{
-    z-index:0;
-    opacity:.94;
     background:
-        linear-gradient(135deg,rgba(41,45,49,.18),rgba(77,112,103,.12)),
-        url("IMG_6145.JPG") center 18%/cover no-repeat;
+        linear-gradient(90deg,rgba(41,45,49,.08),rgba(41,45,49,.02)),
+        url("IMG_6145.JPG") center right / auto 100% no-repeat;
+    filter:none;
 }
 .hero-visual::after{
     z-index:1;
 }
-
-/* A second photo floats outside the hero frame */
 .hero-visual .hero-float-photo{
-    position:absolute;
-    z-index:3;
-    width:210px;
-    height:280px;
-    right:-70px;
-    top:54px;
-    background:url("IMG_6975.JPG") center/cover no-repeat;
-    opacity:.92;
-    transform:rotate(2.5deg);
-    box-shadow:0 24px 60px rgba(0,0,0,.25);
+    display:none;
 }
 
-/* Private / commercial direction blocks */
+/* Direction cards: one calm image plane on the right */
 .event-card{
-    background-position:center;
+    position:relative;
+    overflow:hidden;
+}
+.event-card::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    top:0;
+    right:0;
+    bottom:0;
+    width:43%;
+    background-repeat:no-repeat;
+    background-position:right center;
+    background-size:contain;
+    opacity:.88;
+    pointer-events:none;
+}
+.event-card::after{
+    z-index:1;
+    border:1px solid rgba(255,255,255,.1);
 }
 .event-card.client{
-    background:
-        linear-gradient(135deg,rgba(216,174,183,.92),rgba(216,174,183,.82)),
-        url("IMG_9935.jpg") center/cover no-repeat;
+    background:var(--pink);
+    color:var(--graphite);
+}
+.event-card.client::before{
+    background-image:url("IMG_9960.WEBP");
+}
+.event-card.client::after{
+    background:linear-gradient(90deg,rgba(216,174,183,1) 0%,rgba(216,174,183,.82) 48%,rgba(216,174,183,.12) 100%);
 }
 .event-card.commercial{
-    background:
-        linear-gradient(135deg,rgba(77,112,103,.90),rgba(77,112,103,.80)),
-        url("IMG_9933.PNG") center/cover no-repeat;
+    background:var(--green);
+    color:var(--white);
+}
+.event-card.commercial::before{
+    background-image:url("IMG_0224.JPG");
+}
+.event-card.commercial::after{
+    background:linear-gradient(90deg,rgba(77,112,103,1) 0%,rgba(77,112,103,.78) 48%,rgba(77,112,103,.12) 100%);
+}
+.event-card > *{
+    position:relative;
+    z-index:2;
 }
 
-/* Two service items receive quiet photographic depth */
-.service.has-photo{
+/* Service cards: only the wedding card gets the dedicated photo */
+.service.wedding,
+.service.private{
     position:relative;
     overflow:hidden;
 }
-.service.has-photo::before{
+.service.wedding::before,
+.service.private::before{
     content:"";
     position:absolute;
-    inset:0;
-    background-position:center;
-    background-size:cover;
-    opacity:.16;
-    filter:saturate(.65);
-    transition:opacity .4s ease,transform .6s ease;
+    top:0;
+    right:0;
+    bottom:0;
+    width:38%;
+    background-repeat:no-repeat;
+    background-position:right center;
+    background-size:contain;
+    opacity:.30;
+    pointer-events:none;
 }
-.service.has-photo:hover::before{
-    opacity:.28;
-    transform:scale(1.035);
+.service.wedding::before{
+    background-image:url("ChatGPT Image 4 сент. 2026 г., 00_20_39.png");
+    opacity:.52;
 }
-.service.has-photo > *{
-    position:relative;
-    z-index:1;
+.service.private::before{
+    background-image:url("IMG_0230.JPG");
+    opacity:.18;
 }
-.service.wedding::before{background-image:url("ChatGPT Image 4 сент. 2026 г., 00_20_39.png");}
-.service.private::before{background-image:url("IMG_0230.JPG");}
-
-/* Client experience — one large atmospheric image, intentionally cropped */
-.client-experience{
-    position:relative;
-    overflow:hidden;
-}
-.client-experience::before{
-    content:"";
-    position:absolute;
-    z-index:0;
-    width:48vw;
-    height:72%;
-    right:-9vw;
-    top:14%;
-    background:
-        linear-gradient(90deg,rgba(217,221,224,.96),rgba(217,221,224,.40)),
-        url("IMG_9967.WEBP") center/cover no-repeat;
-    opacity:.72;
-    transform:rotate(-2deg);
-}
-.client-experience > .wrap{
+.service > *{
     position:relative;
     z-index:1;
 }
 
-/* Commercial section — photography sits behind the business message */
-.commercial-section{
-    position:relative;
-    overflow:hidden;
-}
-.commercial-section::before{
-    content:"";
-    position:absolute;
-    z-index:0;
-    left:-8vw;
-    bottom:-10%;
-    width:46vw;
-    height:72%;
-    background:
-        linear-gradient(90deg,rgba(77,112,103,.90),rgba(77,112,103,.30)),
-        url("IMG_7474.PNG") center/cover no-repeat;
-    opacity:.72;
-    transform:rotate(-2deg);
-}
-.commercial-section::after{
-    content:"";
-    position:absolute;
-    z-index:0;
-    right:-10vw;
-    top:-16%;
-    width:40vw;
-    height:66%;
-    background:
-        linear-gradient(90deg,rgba(77,112,103,.25),rgba(77,112,103,.88)),
-        url("IMG_7347.WEBP") center/cover no-repeat;
-    opacity:.55;
-    transform:rotate(3deg);
-}
-
-/* Cases stay image-led, but become editorial rather than flat cards */
+/* Cases: image-led, contained inside their own blocks */
 .case{
     background-size:cover;
     background-repeat:no-repeat;
     background-position:center;
 }
-.case::before{
-    background:linear-gradient(180deg,rgba(32,35,39,.02) 12%,rgba(32,35,39,.78) 100%);
-}
+.case:nth-child(1){background-image:url("IMG_9935.jpg");}
+.case:nth-child(2){background-image:url("IMG_9933.PNG");}
+.case:nth-child(3){background-image:url("IMG_7347.WEBP");}
+.case:nth-child(4){background-image:url("IMG_7474.PNG");}
 
-/* About — portrait floats beyond its column */
-.about{
-    position:relative;
-    overflow:hidden;
-}
-.about-photo{
-    position:relative;
-    margin-left:-5vw;
-    width:calc(100% + 5vw);
-    max-width:560px;
+/* Remove decorative floating photos elsewhere */
+.client-experience::before,
+.client-experience::after,
+.commercial-section::before,
+.commercial-section::after,
+.about::after,
+.cta::before{
+    display:none !important;
 }
 .about-photo::before{
-    content:"";
-    position:absolute;
-    z-index:-1;
-    width:150px;
-    height:190px;
-    left:-70px;
-    bottom:-45px;
-    background:url("IMG_1372.jpg") center/cover no-repeat;
-    opacity:.55;
-    transform:rotate(-5deg);
+    display:none !important;
 }
 
-/* CTA — one quiet full-width memory behind the message */
-.cta{
-    position:relative;
+/* Clean 23-photo gallery */
+.gallery{
+    background:var(--gray);
+    color:var(--graphite);
+    padding:125px 0;
+}
+.gallery .section-kicker{
+    color:#6d7378;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+}
+.gallery h2{
+    max-width:900px;
+    margin-bottom:55px;
+    font-size:clamp(42px,5.2vw,76px);
+    line-height:.98;
+    letter-spacing:-.055em;
+}
+.gallery-grid{
+    columns:3 280px;
+    column-gap:18px;
+}
+.gallery-item{
+    break-inside:avoid;
+    margin:0 0 18px;
     overflow:hidden;
+    background:transparent;
 }
-.cta::before{
-    content:"";
-    position:absolute;
-    z-index:0;
-    right:-8vw;
-    top:-22%;
-    width:48vw;
-    height:145%;
-    background:
-        linear-gradient(90deg,rgba(216,174,183,.96),rgba(216,174,183,.40)),
-        url("IMG_0795.JPG") center/cover no-repeat;
-    opacity:.55;
-    transform:rotate(3deg);
+.gallery-item img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    object-fit:contain;
+    object-position:center;
+    filter:none;
+    transition:transform .45s ease;
 }
-
-/* Desktop breathing room */
-@media(min-width:1001px){
-    .event-card.client{transform:translateY(10px);}
-    .event-card.commercial{transform:translateY(-10px);}
-    .case:nth-child(2){transform:translateY(28px);}
-    .case:nth-child(4){transform:translateY(-18px);}
+.gallery-item:hover img{
+    transform:scale(1.012);
 }
-
-/* Mobile — keep photos inside the viewport */
+@media(max-width:1000px){
+    .gallery-grid{columns:2 260px;}
+}
 @media(max-width:650px){
-    .hero-visual .hero-float-photo{
-        width:125px;
-        height:165px;
-        right:-18px;
-        top:24px;
-    }
-    .client-experience::before{
-        width:78vw;
-        height:44%;
-        right:-18vw;
-        top:53%;
-    }
-    .commercial-section::before{
-        width:80vw;
-        height:48%;
-        left:-20vw;
-    }
-    .commercial-section::after{
-        width:72vw;
-        height:42%;
-        right:-24vw;
-    }
-    .about-photo{
-        margin-left:0;
-        width:100%;
-    }
-    .cta::before{
-        width:85vw;
-        right:-28vw;
-    }
+    .gallery-grid{columns:1;}
+    .event-card::before{width:48%;opacity:.65;}
+    .service.wedding::before,.service.private::before{width:44%;}
 }
-
 </style>
 
 <style id="gallery-22">
@@ -1649,7 +1574,6 @@ footer{
 }
 </style>
 
-<link rel="preload" as="image" href="ChatGPT Image 4 сент. 2026 г., 00_20_39.png">
 </head>
 
 <body>
@@ -1727,10 +1651,7 @@ footer{
 
 
             <div class="hero-visual reveal">
-
-                <div class="hero-float-photo" aria-hidden="true"></div>
-
-                <div class="hero-note float-text">
+<div class="hero-note float-text">
                     <strong>Не просто организовать.</strong>
                     <span>
                         Придумать, собрать и реализовать
@@ -2375,8 +2296,7 @@ footer{
       <figure class="gallery-item"><img src="IMG_0793.JPG" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_0795.JPG" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_1372.jpg" alt="" loading="lazy"></figure>
-      <figure class="gallery-item"><img src="IMG_6144.JPG" alt="" loading="lazy"></figure>
-      <figure class="gallery-item"><img src="IMG_6145.JPG" alt="" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="IMG_6145.JPG" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_6975.JPG" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_6979.JPG" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_6982.JPG" alt="" loading="lazy"></figure>
@@ -2392,7 +2312,7 @@ footer{
       <figure class="gallery-item"><img src="IMG_9965.WEBP" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_9966.WEBP" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_9967.WEBP" alt="" loading="lazy"></figure>
-      <figure class="gallery-item"><img src="ChatGPT Image 4 сент. 2026 г., 00_20_39.png" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="ChatGPT Image 4 сент. 2026 г., 00_20_39.png" alt="Свадебное событие" loading="lazy"></figure>
     </div>
   </div>
 </section>
