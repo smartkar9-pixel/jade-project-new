@@ -1496,6 +1496,125 @@ footer{
 }
 
 </style>
+
+<style id="jade-clean-override">
+/* JADE — clean editorial pass */
+.hero-visual{
+  background:transparent !important;
+  overflow:hidden !important;
+  min-height:620px !important;
+}
+.hero-visual::before{
+  background:
+    linear-gradient(90deg, rgba(27,29,31,.08), rgba(27,29,31,.22)),
+    url("IMG_6145.JPG") center 20% / cover no-repeat !important;
+  opacity:.72 !important;
+  filter:saturate(.72) contrast(.96) !important;
+}
+.hero-visual::after{display:none !important;}
+
+/* No decorative floating photographs */
+.client-experience::after,
+.about::after,
+.hero-float-photo{
+  display:none !important;
+}
+
+/* Photos should read as atmosphere, never as stickers */
+.photo-layer{
+  opacity:.78 !important;
+  border-radius:0 !important;
+}
+.event-card::before,
+.case{
+  border-radius:0 !important;
+}
+.event-card::before{
+  opacity:.72 !important;
+}
+
+/* Keep service photography quiet */
+.service.has-photo::before{
+  opacity:.16 !important;
+  transform:none !important;
+}
+.service.has-photo:hover::before{
+  opacity:.22 !important;
+  transform:none !important;
+}
+
+/* Cases: one strong image, generous text area */
+.cases-grid .case{
+  min-height:420px !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.cases-grid .case::before{
+  opacity:.32 !important;
+}
+
+/* Commercial / client experience: restrained imagery */
+.client-experience{
+  overflow:hidden !important;
+}
+.commercial{
+  overflow:hidden !important;
+}
+.commercial::before{
+  opacity:.18 !important;
+}
+
+/* About portrait stays natural */
+.about-photo{
+  overflow:hidden !important;
+  background:#dfe1df !important;
+}
+.about-photo img{
+  width:100% !important;
+  height:auto !important;
+  max-height:680px !important;
+  object-fit:contain !important;
+  object-position:center bottom !important;
+  display:block !important;
+}
+
+/* Mobile */
+@media (max-width: 760px){
+  .hero-visual{
+    min-height:420px !important;
+  }
+  .hero-visual::before{
+    background-position:center 18% !important;
+  }
+  .cases-grid .case{
+    min-height:340px !important;
+  }
+}
+</style>
+
+<link rel="preload" as="image" href="IMG_0224.JPG">
+<link rel="preload" as="image" href="IMG_0230.JPG">
+<link rel="preload" as="image" href="IMG_0770.jpg">
+<link rel="preload" as="image" href="IMG_0793.JPG">
+<link rel="preload" as="image" href="IMG_0795.JPG">
+<link rel="preload" as="image" href="IMG_1372.jpg">
+<link rel="preload" as="image" href="IMG_6144.JPG">
+<link rel="preload" as="image" href="IMG_6145.JPG">
+<link rel="preload" as="image" href="IMG_6975.JPG">
+<link rel="preload" as="image" href="IMG_6979.JPG">
+<link rel="preload" as="image" href="IMG_6982.JPG">
+<link rel="preload" as="image" href="IMG_7336.jpg">
+<link rel="preload" as="image" href="IMG_7347.WEBP">
+<link rel="preload" as="image" href="IMG_7473.PNG">
+<link rel="preload" as="image" href="IMG_7474.PNG">
+<link rel="preload" as="image" href="IMG_9933.PNG">
+<link rel="preload" as="image" href="IMG_9935.jpg">
+<link rel="preload" as="image" href="IMG_9960.WEBP">
+<link rel="preload" as="image" href="IMG_9961.WEBP">
+<link rel="preload" as="image" href="IMG_9962.WEBP">
+<link rel="preload" as="image" href="IMG_9965.WEBP">
+<link rel="preload" as="image" href="IMG_9966.WEBP">
+<link rel="preload" as="image" href="IMG_9967.WEBP">
 </head>
 
 <body>
@@ -1574,7 +1693,7 @@ footer{
 
             <div class="hero-visual reveal">
 
-                <img class="hero-person-cutout" src="IMG_6145-cutout.png" alt="" aria-hidden="true">
+                <img class="hero-person-cutout" src="IMG_6145.JPG" alt="" aria-hidden="true">
                 <img class="ambient-photo hero-float-2" src="IMG_6975.JPG" alt="" aria-hidden="true">
 
                 <div class="hero-note float-text">
