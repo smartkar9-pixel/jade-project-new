@@ -295,34 +295,31 @@ nav{
 
 .hero-visual{
     position:relative;
-    min-height:650px;
-    overflow:visible;
-    background:transparent;
+    min-height:590px;
+    overflow:hidden;
+    background:var(--gray-dark);
 }
 
-.hero-person-cutout{
+.hero-visual::before{
+    content:"";
     position:absolute;
-    z-index:1;
-    right:-18px;
-    bottom:-2px;
-    width:min(520px, 43vw);
-    height:auto;
-    max-width:none;
-    filter:saturate(.92) contrast(.98);
-    pointer-events:none;
-    user-select:none;
+    inset:0;
+    background:
+        linear-gradient(135deg,rgba(77,112,103,.25),rgba(216,174,183,.16)),
+        url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1400&q=85")
+        center/cover;
+    filter:saturate(.7);
 }
 
 .hero-visual::after{
     content:"JADE";
     position:absolute;
-    z-index:0;
-    right:-18px;
-    bottom:-52px;
-    font-size:150px;
+    right:-25px;
+    bottom:-48px;
+    font-size:160px;
     line-height:1;
     font-weight:800;
-    color:rgba(243,244,243,.045);
+    color:rgba(243,244,243,.09);
     letter-spacing:-.08em;
 }
 
@@ -1357,264 +1354,281 @@ footer{
 
 
 /* =========================
-   JADE — 22 PHOTO EDITORIAL SYSTEM
-   Photos are visual layers, never stretched cards.
+   EDITORIAL PHOTO COMPOSITION
+   Photos are part of the layout, not a card gallery.
 ========================= */
-.ambient-photo{
+
+.photo-layer{
     position:absolute;
     z-index:0;
-    display:block;
-    width:auto;
-    height:auto;
-    max-width:none;
-    object-fit:contain;
     pointer-events:none;
-    user-select:none;
-    border:0;
-    box-shadow:none;
-    filter:saturate(.78) contrast(.98);
+    overflow:hidden;
+    opacity:.72;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    filter:saturate(.78);
+    mix-blend-mode:normal;
 }
-.section-with-photos,
-.events,
-.for-client,
-.client-experience,
-.commercial-section,
-.cases,
-.about,
-.cta,
-.approach{position:relative;overflow:hidden;}
-.section-with-photos > .wrap,
-.events > .wrap,
-.for-client > .wrap,
-.client-experience > .wrap,
+.photo-layer::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(32,35,39,.10),rgba(32,35,39,.52));
+}
+.event-card > *:not(.photo-layer),
 .commercial-section > .wrap,
-.cases > .wrap,
-.about > .wrap,
-.cta > .wrap,
-.approach > .wrap{position:relative;z-index:2;}
-
-/* HERO: the portrait sits directly on the page background. */
-.hero{position:relative;overflow:hidden;}
-.hero .wrap{position:relative;z-index:2;}
-.hero-grid{position:relative;}
-.hero-visual{position:relative;min-height:650px;background:transparent;overflow:visible;}
-.hero-visual::before{display:none!important;}
-.hero-visual::after{
-    content:"JADE";
-    position:absolute;
-    z-index:0;
-    right:-25px;
-    bottom:-50px;
-    font-size:150px;
-    line-height:1;
-    font-weight:800;
-    letter-spacing:-.08em;
-    color:rgba(243,244,243,.045);
-}
-.hero-person-cutout{
-    position:absolute;
-    z-index:1;
-    right:-18px;
-    bottom:-2px;
-    width:min(520px,43vw);
-    height:auto;
-    max-width:none;
-    object-fit:contain;
-    filter:saturate(.92) contrast(.98);
-    pointer-events:none;
-}
-.hero-float-2{right:-1%;bottom:9%;width:170px;opacity:.55;transform:rotate(4deg);}
-
-/* APPROACH */
-.approach .ambient-approach{right:-40px;top:5%;width:270px;opacity:.12;transform:rotate(4deg);}
-
-/* EVENT DIRECTION */
-.event-card{position:relative;overflow:hidden;}
-.event-card::after{z-index:1!important;}
-.event-card > *{position:relative;z-index:2!important;}
-.event-card .ambient-photo{z-index:0;opacity:.75;}
-.event-client-photo{right:-10px;top:0;height:100%;max-height:100%;}
-.event-client-detail{right:8%;bottom:8%;width:150px;opacity:.28;transform:rotate(-3deg);}
-.event-commercial-photo{right:-4%;top:0;height:100%;max-height:100%;}
-.event-commercial-detail{right:9%;top:8%;width:145px;opacity:.25;transform:rotate(3deg);}
-
-/* SERVICES */
-.service{position:relative;overflow:hidden;}
-.service > *{position:relative;z-index:2;}
-.service .ambient-photo{z-index:0;opacity:.20;}
-.service-photo-1{right:-15px;top:-10px;height:125%;}
-.service-photo-2{right:-20px;bottom:-20px;height:125%;}
-.service-photo-3{right:-5px;top:-5px;height:120%;}
-.service-photo-4{right:-25px;bottom:-10px;height:125%;}
-
-/* CLIENT EXPERIENCE — airy photographic planes */
-.client-experience::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(217,221,224,.98),rgba(217,221,224,.90));z-index:0;}
-.client-experience .ambient-photo{opacity:.25;}
-.experience-photo-1{right:-3%;top:3%;height:76%;transform:rotate(-2deg);}
-.experience-photo-2{left:-2%;bottom:-5%;height:54%;opacity:.15!important;transform:rotate(2deg);}
-.experience-photo-3{right:15%;bottom:-20px;width:170px;opacity:.32!important;transform:rotate(5deg);}
-
-/* COMMERCIAL — photos float behind the green field */
-.commercial-section::before{content:"";position:absolute;inset:0;background:#4d7067;z-index:0;}
-.commercial-section .ambient-photo{opacity:.30;}
-.commercial-photo-1{left:-5%;bottom:-8%;height:78%;transform:rotate(-2deg);}
-.commercial-photo-2{right:-5%;top:-10%;height:72%;transform:rotate(3deg);}
-.commercial-photo-3{right:30%;bottom:-25px;width:190px;opacity:.22!important;transform:rotate(-5deg);}
-
-/* CASES — each case keeps its image ratio and uses it as atmosphere */
-.case{position:relative;overflow:hidden;background-image:none!important;}
-.case::before{z-index:1!important;background:linear-gradient(180deg,rgba(32,35,39,.08) 5%,rgba(32,35,39,.78) 100%)!important;}
-.case > *{position:relative;z-index:3;}
-.case .ambient-photo{z-index:0;width:100%;height:100%;object-fit:cover;opacity:.95;}
-.case-photo-1,.case-photo-2,.case-photo-3,.case-photo-4{inset:0;width:100%!important;height:100%!important;object-fit:cover;}
-.case-detail{right:7%;top:8%;width:135px;opacity:.24;transform:rotate(3deg);z-index:0!important;}
-
-/* ABOUT */
-.about .ambient-photo{opacity:.24;}
-.about-photo-main{right:-8%;bottom:-12%;height:80%;transform:rotate(3deg);}
-.about-photo-detail{left:3%;bottom:-30px;width:145px;opacity:.28!important;transform:rotate(-5deg);}
-
-/* CTA */
-.cta::before{content:"";position:absolute;inset:0;background:#d8aeb7;z-index:0;}
-.cta .ambient-photo{opacity:.24;}
-.cta-photo-1{right:-3%;top:-8%;height:116%;transform:rotate(3deg);}
-.cta-photo-2{left:4%;bottom:-25px;width:150px;opacity:.20!important;transform:rotate(-4deg);}
-
-/* Keep all content readable over photographs. */
-.photo-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(32,35,39,.22),transparent 65%);}
-
-@media(max-width:900px){
-    .hero-visual{min-height:500px;margin-top:15px;}
-    .hero-person-cutout{width:min(430px,72vw);right:50%;transform:translateX(50%);bottom:0;}
-    .ambient-photo{opacity:.14!important;}
-    .event-card .ambient-photo{opacity:.28!important;}
-    .hero-float-2,.event-client-detail,.event-commercial-detail,.experience-photo-3,.commercial-photo-3,.case-detail,.about-photo-detail,.cta-photo-2{display:none;}
-}
-@media(max-width:650px){
-    .hero-visual{min-height:440px;}
-    .hero-person-cutout{width:min(390px,82vw);}
+.cta > .wrap{
+    position:relative;
+    z-index:2;
 }
 
-</style>
-
-<style id="jade-clean-override">
-/* JADE — clean editorial pass */
+/* Hero — image becomes a deep background plane */
 .hero-visual{
-  background:transparent !important;
-  overflow:hidden !important;
-  min-height:620px !important;
+    overflow:visible;
+    background:transparent;
 }
 .hero-visual::before{
-  background:
-    linear-gradient(90deg, rgba(27,29,31,.08), rgba(27,29,31,.22)),
-    url("IMG_6145.JPG") center 20% / cover no-repeat !important;
-  opacity:.72 !important;
-  filter:saturate(.72) contrast(.96) !important;
+    z-index:0;
+    opacity:.94;
+    background:
+        linear-gradient(135deg,rgba(41,45,49,.18),rgba(77,112,103,.12)),
+        url("IMG_6145.JPG") center 18%/cover no-repeat;
 }
-.hero-visual::after{display:none !important;}
-
-/* No decorative floating photographs */
-.client-experience::after,
-.about::after,
-.hero-float-photo{
-  display:none !important;
+.hero-visual::after{
+    z-index:1;
 }
 
-/* Photos should read as atmosphere, never as stickers */
-.photo-layer{
-  opacity:.78 !important;
-  border-radius:0 !important;
-}
-.event-card::before,
-.case{
-  border-radius:0 !important;
-}
-.event-card::before{
-  opacity:.72 !important;
+/* A second photo floats outside the hero frame */
+.hero-visual .hero-float-photo{
+    position:absolute;
+    z-index:3;
+    width:210px;
+    height:280px;
+    right:-70px;
+    top:54px;
+    background:url("IMG_6975.JPG") center/cover no-repeat;
+    opacity:.92;
+    transform:rotate(2.5deg);
+    box-shadow:0 24px 60px rgba(0,0,0,.25);
 }
 
-/* Keep service photography quiet */
+/* Private / commercial direction blocks */
+.event-card{
+    background-position:center;
+}
+.event-card.client{
+    background:
+        linear-gradient(135deg,rgba(216,174,183,.92),rgba(216,174,183,.82)),
+        url("IMG_9935.jpg") center/cover no-repeat;
+}
+.event-card.commercial{
+    background:
+        linear-gradient(135deg,rgba(77,112,103,.90),rgba(77,112,103,.80)),
+        url("IMG_9933.PNG") center/cover no-repeat;
+}
+
+/* Two service items receive quiet photographic depth */
+.service.has-photo{
+    position:relative;
+    overflow:hidden;
+}
 .service.has-photo::before{
-  opacity:.16 !important;
-  transform:none !important;
+    content:"";
+    position:absolute;
+    inset:0;
+    background-position:center;
+    background-size:cover;
+    opacity:.16;
+    filter:saturate(.65);
+    transition:opacity .4s ease,transform .6s ease;
 }
 .service.has-photo:hover::before{
-  opacity:.22 !important;
-  transform:none !important;
+    opacity:.28;
+    transform:scale(1.035);
 }
+.service.has-photo > *{
+    position:relative;
+    z-index:1;
+}
+.service.wedding::before{background-image:url("IMG_0224.JPG");}
+.service.private::before{background-image:url("IMG_0230.JPG");}
 
-/* Cases: one strong image, generous text area */
-.cases-grid .case{
-  min-height:420px !important;
-  background-size:cover !important;
-  background-position:center !important;
-}
-.cases-grid .case::before{
-  opacity:.32 !important;
-}
-
-/* Commercial / client experience: restrained imagery */
+/* Client experience — one large atmospheric image, intentionally cropped */
 .client-experience{
-  overflow:hidden !important;
+    position:relative;
+    overflow:hidden;
 }
-.commercial{
-  overflow:hidden !important;
+.client-experience::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    width:48vw;
+    height:72%;
+    right:-9vw;
+    top:14%;
+    background:
+        linear-gradient(90deg,rgba(217,221,224,.96),rgba(217,221,224,.40)),
+        url("IMG_9967.WEBP") center/cover no-repeat;
+    opacity:.72;
+    transform:rotate(-2deg);
 }
-.commercial::before{
-  opacity:.18 !important;
+.client-experience > .wrap{
+    position:relative;
+    z-index:1;
 }
 
-/* About portrait stays natural */
+/* Commercial section — photography sits behind the business message */
+.commercial-section{
+    position:relative;
+    overflow:hidden;
+}
+.commercial-section::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    left:-8vw;
+    bottom:-10%;
+    width:46vw;
+    height:72%;
+    background:
+        linear-gradient(90deg,rgba(77,112,103,.90),rgba(77,112,103,.30)),
+        url("IMG_7474.PNG") center/cover no-repeat;
+    opacity:.72;
+    transform:rotate(-2deg);
+}
+.commercial-section::after{
+    content:"";
+    position:absolute;
+    z-index:0;
+    right:-10vw;
+    top:-16%;
+    width:40vw;
+    height:66%;
+    background:
+        linear-gradient(90deg,rgba(77,112,103,.25),rgba(77,112,103,.88)),
+        url("IMG_7347.WEBP") center/cover no-repeat;
+    opacity:.55;
+    transform:rotate(3deg);
+}
+
+/* Cases stay image-led, but become editorial rather than flat cards */
+.case{
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.case::before{
+    background:linear-gradient(180deg,rgba(32,35,39,.02) 12%,rgba(32,35,39,.78) 100%);
+}
+
+/* About — portrait floats beyond its column */
+.about{
+    position:relative;
+    overflow:hidden;
+}
 .about-photo{
-  overflow:hidden !important;
-  background:#dfe1df !important;
+    position:relative;
+    margin-left:-5vw;
+    width:calc(100% + 5vw);
+    max-width:560px;
 }
-.about-photo img{
-  width:100% !important;
-  height:auto !important;
-  max-height:680px !important;
-  object-fit:contain !important;
-  object-position:center bottom !important;
-  display:block !important;
+.about-photo::before{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    width:150px;
+    height:190px;
+    left:-70px;
+    bottom:-45px;
+    background:url("IMG_1372.jpg") center/cover no-repeat;
+    opacity:.55;
+    transform:rotate(-5deg);
 }
 
-/* Mobile */
-@media (max-width: 760px){
-  .hero-visual{
-    min-height:420px !important;
-  }
-  .hero-visual::before{
-    background-position:center 18% !important;
-  }
-  .cases-grid .case{
-    min-height:340px !important;
-  }
+/* CTA — one quiet full-width memory behind the message */
+.cta{
+    position:relative;
+    overflow:hidden;
+}
+.cta::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    right:-8vw;
+    top:-22%;
+    width:48vw;
+    height:145%;
+    background:
+        linear-gradient(90deg,rgba(216,174,183,.96),rgba(216,174,183,.40)),
+        url("IMG_0795.JPG") center/cover no-repeat;
+    opacity:.55;
+    transform:rotate(3deg);
+}
+
+/* Desktop breathing room */
+@media(min-width:1001px){
+    .event-card.client{transform:translateY(10px);}
+    .event-card.commercial{transform:translateY(-10px);}
+    .case:nth-child(2){transform:translateY(28px);}
+    .case:nth-child(4){transform:translateY(-18px);}
+}
+
+/* Mobile — keep photos inside the viewport */
+@media(max-width:650px){
+    .hero-visual .hero-float-photo{
+        width:125px;
+        height:165px;
+        right:-18px;
+        top:24px;
+    }
+    .client-experience::before{
+        width:78vw;
+        height:44%;
+        right:-18vw;
+        top:53%;
+    }
+    .commercial-section::before{
+        width:80vw;
+        height:48%;
+        left:-20vw;
+    }
+    .commercial-section::after{
+        width:72vw;
+        height:42%;
+        right:-24vw;
+    }
+    .about-photo{
+        margin-left:0;
+        width:100%;
+    }
+    .cta::before{
+        width:85vw;
+        right:-28vw;
+    }
+}
+
+</style>
+
+<style id="gallery-22">
+.gallery{padding:110px 0;background:#dfe1df;color:#1b1d1f}
+.gallery .container{max-width:1240px;margin:0 auto;padding:0 28px}
+.gallery h2{font-size:clamp(42px,6vw,76px);line-height:.96;margin:12px 0 48px;font-weight:500;letter-spacing:-.04em}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gallery-item{margin:0;overflow:hidden;background:#cfd2d0}
+.gallery-item img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+.gallery-item:nth-child(3n+1){grid-column:span 2}
+@media(max-width:800px){
+  .gallery{padding:76px 0}
+  .gallery .container{padding:0 18px}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .gallery-item:nth-child(3n+1){grid-column:span 1}
+}
+@media(max-width:520px){
+  .gallery-grid{grid-template-columns:1fr}
 }
 </style>
 
-<link rel="preload" as="image" href="IMG_0224.JPG">
-<link rel="preload" as="image" href="IMG_0230.JPG">
-<link rel="preload" as="image" href="IMG_0770.jpg">
-<link rel="preload" as="image" href="IMG_0793.JPG">
-<link rel="preload" as="image" href="IMG_0795.JPG">
-<link rel="preload" as="image" href="IMG_1372.jpg">
-<link rel="preload" as="image" href="IMG_6144.JPG">
-<link rel="preload" as="image" href="IMG_6145.JPG">
-<link rel="preload" as="image" href="IMG_6975.JPG">
-<link rel="preload" as="image" href="IMG_6979.JPG">
-<link rel="preload" as="image" href="IMG_6982.JPG">
-<link rel="preload" as="image" href="IMG_7336.jpg">
-<link rel="preload" as="image" href="IMG_7347.WEBP">
-<link rel="preload" as="image" href="IMG_7473.PNG">
-<link rel="preload" as="image" href="IMG_7474.PNG">
-<link rel="preload" as="image" href="IMG_9933.PNG">
-<link rel="preload" as="image" href="IMG_9935.jpg">
-<link rel="preload" as="image" href="IMG_9960.WEBP">
-<link rel="preload" as="image" href="IMG_9961.WEBP">
-<link rel="preload" as="image" href="IMG_9962.WEBP">
-<link rel="preload" as="image" href="IMG_9965.WEBP">
-<link rel="preload" as="image" href="IMG_9966.WEBP">
-<link rel="preload" as="image" href="IMG_9967.WEBP">
 </head>
 
 <body>
@@ -1639,7 +1653,7 @@ footer{
                 Обсудить проект
             </a>
 
-        </nav>
+        <a href="#photo">Фото</a></nav>
     </div>
 </header>
 
@@ -1648,7 +1662,7 @@ footer{
 
 <!-- ================= HERO ================= -->
 
-<section class="hero section-with-photos">
+<section class="hero">
 
     <div class="wrap">
 
@@ -1693,8 +1707,7 @@ footer{
 
             <div class="hero-visual reveal">
 
-                <img class="hero-person-cutout" src="IMG_6145.JPG" alt="" aria-hidden="true">
-                <img class="ambient-photo hero-float-2" src="IMG_6975.JPG" alt="" aria-hidden="true">
+                <div class="hero-float-photo" aria-hidden="true"></div>
 
                 <div class="hero-note float-text">
                     <strong>Не просто организовать.</strong>
@@ -1715,9 +1728,7 @@ footer{
 
 <!-- ================= APPROACH ================= -->
 
-<section class="approach section-with-photos" id="approach">
-
-    <img class="ambient-photo ambient-approach" src="IMG_0770.jpg" alt="" aria-hidden="true">
+<section class="approach" id="approach">
 
     <div class="wrap">
 
@@ -1816,10 +1827,7 @@ footer{
 
 <!-- ================= EVENTS ================= -->
 
-<section class="events section-with-photos" id="events">
-
-    <img class="ambient-photo event-client-detail" src="IMG_0793.JPG" alt="" aria-hidden="true">
-    <img class="ambient-photo event-commercial-detail" src="IMG_0230.JPG" alt="" aria-hidden="true">
+<section class="events" id="events">
 
     <div class="wrap">
 
@@ -1854,7 +1862,6 @@ footer{
         <div class="event-grid">
 
             <article class="event-card client reveal">
-                <img class="ambient-photo event-client-photo" src="IMG_0224.JPG" alt="" aria-hidden="true">
 
                 <div>
                     <div class="event-meta">
@@ -1897,7 +1904,6 @@ footer{
 
 
             <article class="event-card commercial reveal" id="commercial">
-                <img class="ambient-photo event-commercial-photo" src="IMG_9960.WEBP" alt="" aria-hidden="true">
 
                 <div>
                     <div class="event-meta">
@@ -1946,7 +1952,7 @@ footer{
 
 <!-- ================= FOR CLIENT ================= -->
 
-<section class="for-client section-with-photos">
+<section class="for-client">
 
     <div class="wrap">
 
@@ -1985,7 +1991,6 @@ footer{
             <div class="service-list reveal">
 
                 <div class="service has-photo wedding">
-                    <img class="ambient-photo service-photo-1" src="IMG_6979.JPG" alt="" aria-hidden="true">
                     <div class="service-num">01</div>
 
                     <h3>
@@ -2000,7 +2005,6 @@ footer{
 
 
                 <div class="service has-photo private">
-                    <img class="ambient-photo service-photo-2" src="IMG_6982.JPG" alt="" aria-hidden="true">
                     <div class="service-num">02</div>
 
                     <h3>
@@ -2015,7 +2019,6 @@ footer{
 
 
                 <div class="service corporate">
-                    <img class="ambient-photo service-photo-3" src="IMG_7336.jpg" alt="" aria-hidden="true">
                     <div class="service-num">03</div>
 
                     <h3>
@@ -2030,7 +2033,6 @@ footer{
 
 
                 <div class="service special">
-                    <img class="ambient-photo service-photo-4" src="IMG_9961.WEBP" alt="" aria-hidden="true">
                     <div class="service-num">04</div>
 
                     <h3>
@@ -2054,11 +2056,7 @@ footer{
 
 <!-- ================= CLIENT EXPERIENCE ================= -->
 
-<section class="client-experience section-with-photos">
-
-    <img class="ambient-photo experience-photo-1" src="IMG_9967.WEBP" alt="" aria-hidden="true">
-    <img class="ambient-photo experience-photo-2" src="IMG_9962.WEBP" alt="" aria-hidden="true">
-    <img class="ambient-photo experience-photo-3" src="IMG_9965.WEBP" alt="" aria-hidden="true">
+<section class="client-experience">
 
     <div class="wrap">
 
@@ -2117,11 +2115,7 @@ footer{
 
 <!-- ================= COMMERCIAL ================= -->
 
-<section class="commercial-section section-with-photos">
-
-    <img class="ambient-photo commercial-photo-1" src="IMG_7474.PNG" alt="" aria-hidden="true">
-    <img class="ambient-photo commercial-photo-2" src="IMG_7347.WEBP" alt="" aria-hidden="true">
-    <img class="ambient-photo commercial-photo-3" src="IMG_9966.WEBP" alt="" aria-hidden="true">
+<section class="commercial-section">
 
     <div class="wrap">
 
@@ -2216,7 +2210,7 @@ footer{
 
 <!-- ================= CASES ================= -->
 
-<section class="cases section-with-photos" id="cases">
+<section class="cases" id="cases">
 
     <div class="wrap">
 
@@ -2255,10 +2249,6 @@ footer{
         <div class="case-grid">
 
             <article class="case reveal">
-                <img class="ambient-photo case-photo-4" src="IMG_7473.PNG" alt="" aria-hidden="true">
-                <img class="ambient-photo case-photo-3" src="IMG_1372.jpg" alt="" aria-hidden="true">
-                <img class="ambient-photo case-photo-2" src="IMG_9933.PNG" alt="" aria-hidden="true">
-                <img class="ambient-photo case-photo-1" src="IMG_9935.jpg" alt="" aria-hidden="true">
 
                 <span class="case-num">01</span>
 
@@ -2351,9 +2341,40 @@ footer{
 
 <!-- ================= ABOUT ================= -->
 
-<section class="about section-with-photos" id="about">
 
-    <img class="ambient-photo about-photo-main" src="IMG_0795.JPG" alt="" aria-hidden="true">
+<section class="gallery" id="photo">
+  <div class="container">
+    <div class="section-kicker">PHOTO / ПРОЕКТЫ В КАДРЕ</div>
+    <h2>22 момента из проектов</h2>
+    <div class="gallery-grid">
+
+      <figure class="gallery-item"><img src="IMG_0224.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_0230.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_0770.jpg" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_0793.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_0795.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_1372.jpg" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_6144.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_6145.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_6975.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_6979.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_6982.JPG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_7336.jpg" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_7347.WEBP" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_7473.PNG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_7474.PNG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9933.PNG" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9935.jpg" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9960.WEBP" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9961.WEBP" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9962.WEBP" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9965.WEBP" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9966.WEBP" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="IMG_9967.WEBP" alt="" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+<section class="about" id="about">
 
     <div class="wrap">
 
@@ -2549,7 +2570,7 @@ footer{
 
 <!-- ================= CTA ================= -->
 
-<section class="cta section-with-photos" id="contact">
+<section class="cta" id="contact">
 
     <div class="wrap">
 
