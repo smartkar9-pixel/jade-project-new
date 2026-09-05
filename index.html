@@ -964,8 +964,10 @@ footer{
 
 .case{
     min-height:460px;
-    background-size:cover;
+    background-size:contain;
     background-position:center;
+    background-repeat:no-repeat;
+    background-color:var(--graphite-soft);
 }
 
 .case::before{
@@ -1017,6 +1019,11 @@ footer{
 .case:nth-child(4){
     background-image:url("IMG_7474.PNG");
 }
+.case:nth-child(1){ background-position:center center; }
+.case:nth-child(2){ background-position:center center; }
+.case:nth-child(3){ background-position:center center; }
+.case:nth-child(4){ background-position:center center; }
+
 
 .client-experience{
     background:var(--gray);
@@ -1141,6 +1148,73 @@ footer{
     .contact-links a{
         width:100%;
         justify-content:center;
+    }
+}
+
+
+/* =========================
+   PHOTO GALLERY
+========================= */
+
+.photo-gallery{
+    background:var(--black);
+}
+
+.photo-gallery .section-head{
+    margin-bottom:50px;
+}
+
+.gallery-grid{
+    columns:3 280px;
+    column-gap:18px;
+}
+
+.gallery-item{
+    break-inside:avoid;
+    margin:0 0 18px;
+    position:relative;
+    overflow:hidden;
+    background:var(--graphite-soft);
+}
+
+.gallery-item img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:contain;
+    object-position:center;
+    filter:saturate(.88);
+    transition:transform .55s ease,filter .55s ease;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.025);
+    filter:saturate(1);
+}
+
+.gallery-caption{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:16px;
+    padding:10px 12px;
+    background:rgba(32,35,39,.84);
+    color:var(--white);
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+@media(max-width:1000px){
+    .gallery-grid{
+        columns:2 260px;
+    }
+}
+
+@media(max-width:650px){
+    .gallery-grid{
+        columns:1;
     }
 }
 
@@ -1296,6 +1370,7 @@ footer{
                 <a href="#events">Для вас</a>
                 <a href="#commercial">Для бизнеса</a>
                 <a href="#cases">Кейсы</a>
+                <a href="#gallery">Фото</a>
                 <a href="#about">Обо мне</a>
             </div>
 
@@ -1986,6 +2061,104 @@ footer{
 </section>
 
 
+
+<!-- ================= PHOTO GALLERY ================= -->
+
+<section class="photo-gallery" id="gallery">
+
+    <div class="wrap">
+
+        <div class="section-head reveal">
+
+            <div>
+                <div class="eyebrow">
+                    Живые моменты
+                </div>
+
+                <span class="en">
+                    JADE · REAL EVENTS · REAL PEOPLE
+                </span>
+            </div>
+
+            <div>
+                <h2>
+                    Не только кейсы.
+                    <span class="serif pink">Атмосфера.</span>
+                </h2>
+
+                <p>
+                    Показываю события такими, какими они остаются в памяти:
+                    люди, энергия, детали, пространство и настоящие эмоции.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="gallery-grid reveal">
+
+            <figure class="gallery-item">
+                <img src="IMG_0224.JPG" alt="JADE — событие и атмосфера">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_0230.JPG" alt="JADE — событие и гости">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_0795.JPG" alt="JADE — событие">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_1372.jpg" alt="JADE — мероприятие">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_6145.JPG" alt="Анастасия Кузнецова">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_6975.JPG" alt="JADE — личный стиль и работа">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_6979.JPG" alt="JADE — мероприятие">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_6982.JPG" alt="JADE — event production">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_7336.jpg" alt="JADE — backstage и процесс">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_7347.WEBP" alt="JADE — масштабное событие">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_7474.PNG" alt="JADE — White Night">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_9933.PNG" alt="JADE — корпоративное событие">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_9935.jpg" alt="JADE — частное событие">
+            </figure>
+
+            <figure class="gallery-item">
+                <img src="IMG_9967.WEBP" alt="JADE — событие «Земля и мы»">
+            </figure>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 <!-- ================= ABOUT ================= -->
 
 <section class="about" id="about">
@@ -2286,6 +2459,10 @@ footer{
 
                 <a href="#cases">
                     Кейсы
+                </a>
+
+                <a href="#gallery">
+                    Фото
                 </a>
 
                 <a href="#about">
