@@ -1613,98 +1613,6 @@ footer{
 }
 </style>
 
-
-<style id="final-visual-fix">
-/* 01 — PHOTO GALLERY: dense masonry, no artificial row gaps */
-.gallery-grid{
-    display:block !important;
-    columns:3 280px !important;
-    column-gap:14px !important;
-}
-.gallery-item{
-    display:inline-block !important;
-    width:100% !important;
-    margin:0 0 14px !important;
-    break-inside:avoid !important;
-    -webkit-column-break-inside:avoid !important;
-    overflow:hidden !important;
-    background:transparent !important;
-}
-.gallery-item:nth-child(3n+1){
-    grid-column:auto !important;
-}
-.gallery-item img{
-    display:block !important;
-    width:100% !important;
-    height:auto !important;
-    max-width:100% !important;
-    aspect-ratio:auto !important;
-    object-fit:cover !important;
-}
-@media(max-width:1000px){
-    .gallery-grid{columns:2 260px !important;}
-}
-@media(max-width:650px){
-    .gallery-grid{columns:1 !important;}
-}
-
-/* 02 — "ЕСЛИ ВЫ ХОТИТЕ СОБЫТИЕ": top two cards have correctly fitted photos */
-.service.wedding,
-.service.private{
-    position:relative !important;
-    overflow:hidden !important;
-}
-.service.wedding::before,
-.service.private::before{
-    content:"" !important;
-    position:absolute !important;
-    inset:0 !important;
-    width:100% !important;
-    height:100% !important;
-    background-repeat:no-repeat !important;
-    background-size:cover !important;
-    background-position:center !important;
-    opacity:.30 !important;
-    z-index:0 !important;
-    pointer-events:none !important;
-}
-.service.wedding::before{
-    background-image:url("ChatGPT Image 4 сент. 2026 г., 00_20_39.png") !important;
-    background-position:center 35% !important;
-}
-.service.private::before{
-    background-image:url("IMG_0230.JPG") !important;
-    background-position:center !important;
-}
-.service.wedding::after,
-.service.private::after{
-    content:"" !important;
-    position:absolute !important;
-    inset:0 !important;
-    background:linear-gradient(90deg,rgba(32,35,39,.96) 0%,rgba(32,35,39,.72) 52%,rgba(32,35,39,.34) 100%) !important;
-    z-index:1 !important;
-    pointer-events:none !important;
-}
-.service.wedding > *,
-.service.private > *{
-    position:relative !important;
-    z-index:2 !important;
-}
-
-/* 03 — HERO: portrait fills the photo window, never stretched */
-.hero-visual{
-    overflow:hidden !important;
-    position:relative !important;
-}
-.hero-visual::before{
-    background-image:url("IMG_6145.JPG") !important;
-    background-repeat:no-repeat !important;
-    background-position:center !important;
-    background-size:cover !important;
-    filter:none !important;
-}
-</style>
-
 </head>
 
 <body>
@@ -1782,13 +1690,14 @@ footer{
 
 
             <div class="hero-visual reveal">
+                <img class="hero-photo" src="IMG_6145.JPG" alt="Анастасия Кузнецова на событии">
+                <div class="hero-photo-overlay"></div>
 <div class="hero-note float-text">
                     <strong>Не просто организовать.</strong>
                     <span>
                         Придумать, собрать и реализовать
                         так, чтобы событие действительно чувствовалось.
-                    </span>
-                </div>
+                    </span></div>
 
             </div>
 
@@ -2064,6 +1973,9 @@ footer{
             <div class="service-list reveal">
 
                 <div class="service has-photo wedding">
+                    <img class="service-photo" src="ChatGPT Image 4 сент. 2026 г., 00_20_39.png" alt="Свадебное событие">
+                    <div class="service-overlay"></div>
+                    <div class="service-content">
                     <div class="service-num">01</div>
 
                     <h3>
@@ -2074,10 +1986,14 @@ footer{
                         От камерного формата до большой
                         многодневной истории.
                     </p>
+                    </div>
                 </div>
 
 
                 <div class="service has-photo private">
+                    <img class="service-photo" src="IMG_0230.JPG" alt="Частное событие">
+                    <div class="service-overlay"></div>
+                    <div class="service-content">
                     <div class="service-num">02</div>
 
                     <h3>
@@ -2088,6 +2004,7 @@ footer{
                         Дни рождения, юбилеи, семейные
                         и персональные праздники.
                     </p>
+                    </div>
                 </div>
 
 
@@ -2924,6 +2841,170 @@ document.querySelectorAll('.gallery-item img').forEach(function(img){
     const item = img.closest('.gallery-item');
     if(item) item.remove();
   });
+});
+</script>
+
+
+<style id="jade-final-photo-layout">
+/* ===== FINAL CLEAN PHOTO LAYOUT ===== */
+
+/* HERO — the photo is a real element, filling the window exactly */
+.hero-visual{
+    position:relative !important;
+    min-height:590px !important;
+    overflow:hidden !important;
+    background:#8b9298 !important;
+}
+.hero-visual::before{
+    display:none !important;
+}
+.hero-photo{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    object-fit:cover !important;
+    object-position:center center !important;
+    display:block !important;
+    filter:none !important;
+}
+.hero-photo-overlay{
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1 !important;
+    background:linear-gradient(90deg,rgba(32,35,39,.18),rgba(32,35,39,0) 55%,rgba(32,35,39,.08)) !important;
+    pointer-events:none !important;
+}
+.hero-visual .hero-note{
+    z-index:3 !important;
+}
+
+/* TOP SERVICE CARDS — full photo inside the exact card window */
+.service.has-photo.wedding,
+.service.has-photo.private{
+    position:relative !important;
+    overflow:hidden !important;
+    isolation:isolate !important;
+    min-height:300px !important;
+    background:var(--graphite-soft) !important;
+}
+.service.has-photo .service-photo{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    max-width:none !important;
+    object-fit:cover !important;
+    display:block !important;
+    z-index:0 !important;
+    filter:saturate(.82) contrast(.98) !important;
+}
+.service.has-photo.wedding .service-photo{
+    object-position:center 35% !important;
+}
+.service.has-photo.private .service-photo{
+    object-position:center center !important;
+}
+.service-overlay{
+    position:absolute !important;
+    inset:0 !important;
+    z-index:1 !important;
+    background:linear-gradient(180deg,rgba(32,35,39,.20),rgba(32,35,39,.82)) !important;
+    pointer-events:none !important;
+}
+.service-content{
+    position:relative !important;
+    z-index:2 !important;
+    min-height:300px !important;
+    height:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:flex-end !important;
+    padding:30px !important;
+    color:var(--white) !important;
+}
+.service-content .service-num{
+    margin-bottom:auto !important;
+}
+.service-content h3{
+    color:var(--white) !important;
+}
+.service-content p{
+    color:rgba(243,244,243,.82) !important;
+}
+
+/* Prevent old pseudo-photo rules from reappearing */
+.service.wedding::before,
+.service.private::before,
+.service.wedding::after,
+.service.private::after{
+    display:none !important;
+}
+
+/* GALLERY — true tight masonry, no stretched tiles and no empty grid rows */
+.photo-gallery .gallery-grid{
+    display:block !important;
+    columns:3 280px !important;
+    column-gap:12px !important;
+    column-fill:balance !important;
+}
+.photo-gallery .gallery-item{
+    display:inline-block !important;
+    width:100% !important;
+    margin:0 0 12px !important;
+    padding:0 !important;
+    break-inside:avoid !important;
+    -webkit-column-break-inside:avoid !important;
+    overflow:hidden !important;
+    background:transparent !important;
+    vertical-align:top !important;
+}
+.photo-gallery .gallery-item img{
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    max-width:100% !important;
+    aspect-ratio:auto !important;
+    object-fit:cover !important;
+    object-position:center !important;
+}
+.photo-gallery .gallery-caption{
+    left:10px !important;
+    right:10px !important;
+    bottom:10px !important;
+}
+
+@media(max-width:1000px){
+    .photo-gallery .gallery-grid{
+        columns:2 260px !important;
+    }
+}
+@media(max-width:650px){
+    .hero-visual{
+        min-height:500px !important;
+    }
+    .photo-gallery .gallery-grid{
+        columns:1 !important;
+    }
+    .service-content{
+        min-height:280px !important;
+    }
+}
+</style>
+
+
+<script id="jade-gallery-cleanup-final">
+document.querySelectorAll('.gallery-item img').forEach(function(img){
+    if (img.complete && img.naturalWidth === 0) {
+        const item = img.closest('.gallery-item');
+        if (item) item.remove();
+        return;
+    }
+    img.addEventListener('error', function(){
+        const item = img.closest('.gallery-item');
+        if (item) item.remove();
+    });
 });
 </script>
 
