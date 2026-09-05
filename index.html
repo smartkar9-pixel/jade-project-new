@@ -1451,7 +1451,7 @@ footer{
     position:relative;
     z-index:1;
 }
-.service.wedding::before{background-image:url("IMG_0224.JPG");}
+.service.wedding::before{background-image:url("ChatGPT Image 4 сент. 2026 г., 00_20_39.png");}
 .service.private::before{background-image:url("IMG_0230.JPG");}
 
 /* Client experience — one large atmospheric image, intentionally cropped */
@@ -1629,6 +1629,27 @@ footer{
 }
 </style>
 
+
+<style id="requested-photo-fix">
+/* Requested photo assignment */
+.event-card.client::before{
+  background-image:url("IMG_9960.WEBP") !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.event-card.commercial::before{
+  background-image:url("IMG_0224.JPG") !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.service.wedding::before{
+  background-image:url("ChatGPT Image 4 сент. 2026 г., 00_20_39.png") !important;
+  background-size:cover !important;
+  background-position:center 38% !important;
+}
+</style>
+
+<link rel="preload" as="image" href="ChatGPT Image 4 сент. 2026 г., 00_20_39.png">
 </head>
 
 <body>
@@ -2345,7 +2366,7 @@ footer{
 <section class="gallery" id="photo">
   <div class="container">
     <div class="section-kicker">PHOTO / ПРОЕКТЫ В КАДРЕ</div>
-    <h2>22 момента из проектов</h2>
+    <h2>23 момента из проектов</h2>
     <div class="gallery-grid">
 
       <figure class="gallery-item"><img src="IMG_0224.JPG" alt="" loading="lazy"></figure>
@@ -2371,6 +2392,7 @@ footer{
       <figure class="gallery-item"><img src="IMG_9965.WEBP" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_9966.WEBP" alt="" loading="lazy"></figure>
       <figure class="gallery-item"><img src="IMG_9967.WEBP" alt="" loading="lazy"></figure>
+      <figure class="gallery-item"><img src="ChatGPT Image 4 сент. 2026 г., 00_20_39.png" alt="" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -2810,10 +2832,10 @@ window.addEventListener("scroll",()=>{
 .event-card::before{content:"";position:absolute;z-index:0;top:0;right:0;bottom:0;width:46%;background-repeat:no-repeat;background-position:center right;background-size:contain;opacity:.9;pointer-events:none;}
 .event-card::after{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(32,35,39,.98) 0%,rgba(32,35,39,.78) 45%,rgba(32,35,39,.18) 100%);}
 .event-card.client{background:linear-gradient(135deg,#d8aeb7,#c99da8)!important;}
-.event-card.client::before{background-image:url("IMG_6144.JPG");}
+.event-card.client::before{background-image:url("IMG_9960.WEBP");}
 .event-card.client::after{background:linear-gradient(90deg,rgba(216,174,183,.98) 0%,rgba(216,174,183,.82) 42%,rgba(216,174,183,.12) 100%);}
 .event-card.commercial{background:#4d7067!important;}
-.event-card.commercial::before{width:62%;background-image:url("IMG_9960.WEBP");background-size:cover;background-position:center;}
+.event-card.commercial::before{width:62%;background-image:url("IMG_0224.JPG");background-size:cover;background-position:center;}
 .event-card.commercial::after{background:linear-gradient(90deg,rgba(77,112,103,.98) 0%,rgba(77,112,103,.78) 42%,rgba(77,112,103,.12) 100%);}
 .event-card > *{position:relative!important;z-index:2!important;}
 
